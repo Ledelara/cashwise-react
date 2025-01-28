@@ -3,7 +3,8 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { registerSchema } from "@/schemas/registerSchema";
 import { useCreateUser } from "@/services/mutate";
-import { Button, Container, TextField } from "@mui/material";
+import { TextField } from "@mui/material";
+import Form from "../Forms/Form";
 
 export default function RegisterForm() {
     const { register, handleSubmit, formState: { errors } } = useForm<IRegisterUserPayload>({
@@ -14,10 +15,11 @@ export default function RegisterForm() {
 
     const onSubmit = async (data: IRegisterUserPayload) => {
         createUserMutation.mutate(data);
-    };    
+    };
 
     return (
-        <Container
+        <Form
+            onSubmit={handleSubmit(onSubmit)}
             style={{
                 backgroundColor: '#f5f5f5',
                 padding: '20px',
@@ -32,73 +34,54 @@ export default function RegisterForm() {
                 margin: 'auto',
                 marginTop: '50px'
             }}
+            buttonLabel={loading ? 'Carregando...' : 'Cadastrar'}
         >
-            <form
-                onSubmit={handleSubmit(onSubmit)}
+            <TextField
+                id="name"
+                label="Nome"
+                variant="outlined"
+                {...register('name')}
+                error={!!errors?.name}
+                helperText={errors?.name?.message}
                 style={{
-                    display: 'flex',
-                    flexDirection: 'column',
-                    gap: '10px',
                     width: '100%'
                 }}
-            >
-                <TextField 
-                    id="name"
-                    label="Nome"
-                    variant="outlined"
-                    {...register('name')}
-                    error={!!errors?.name}
-                    helperText={errors?.name?.message}
-                    style={{
-                        width: '100%'
-                    }}
-                />
-                <TextField 
-                    id="email"
-                    label="Email"
-                    variant="outlined"
-                    {...register('email')}
-                    error={!!errors?.email}
-                    helperText={errors?.email?.message}
-                    style={{
-                        width: '100%'
-                    }}
-                />
-                <TextField 
-                    id="password"
-                    label="Senha"
-                    variant="outlined"
-                    type="password"
-                    {...register('password')}
-                    error={!!errors?.password}
-                    helperText={errors?.password?.message}
-                    style={{
-                        width: '100%'
-                    }}
-                />
-                <TextField 
-                    id="transactionpPassword"
-                    label="Senha de transação"
-                    variant="outlined"
-                    type="password"
-                    {...register('transactionPassword')}
-                    error={!!errors?.password}
-                    helperText={errors?.password?.message}
-                    style={{
-                        width: '100%'
-                    }}
-                />
-                <Button
-                    type="submit" 
-                    variant="contained"
-                    disabled={loading}
-                    style={{
-                        width: '100%'
-                    }}
-                >
-                    {loading ? "Carregando..." : "Cadastrar"}
-                </Button>
-            </form>
-        </Container>
+            />
+            <TextField
+                id="email"
+                label="Email"
+                variant="outlined"
+                {...register('email')}
+                error={!!errors?.email}
+                helperText={errors?.email?.message}
+                style={{
+                    width: '100%'
+                }}
+            />
+            <TextField
+                id="password"
+                label="Senha"
+                variant="outlined"
+                type="password"
+                {...register('password')}
+                error={!!errors?.password}
+                helperText={errors?.password?.message}
+                style={{
+                    width: '100%'
+                }}
+            />
+            <TextField
+                id="transactionpPassword"
+                label="Senha de transação"
+                variant="outlined"
+                type="password"
+                {...register('transactionPassword')}
+                error={!!errors?.password}
+                helperText={errors?.password?.message}
+                style={{
+                    width: '100%'
+                }}
+            />
+        </Form>
     )
 }

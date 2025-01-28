@@ -2,8 +2,9 @@ import { loginSchema } from "@/schemas/loginSchema"
 import { useLoginUser } from "@/services/mutate";
 import { ILoginUserPayload } from "@/types/@types"
 import { zodResolver } from "@hookform/resolvers/zod"
-import { Button, Container, TextField } from "@mui/material";
+import { TextField } from "@mui/material";
 import { useForm } from "react-hook-form"
+import Form from "../Forms/Form";
 
 export default function LoginForm() {
     const { register, handleSubmit, formState: { errors } } = useForm<ILoginUserPayload>({
@@ -17,7 +18,8 @@ export default function LoginForm() {
     };
 
     return (
-        <Container
+        <Form
+            onSubmit={handleSubmit(onSubmit)}
             style={{
                 backgroundColor: '#f5f5f5',
                 padding: '20px',
@@ -32,50 +34,31 @@ export default function LoginForm() {
                 margin: 'auto',
                 marginTop: '50px'
             }}
+            buttonLabel={loading ? 'Carregando...' : 'Entrar'}
         >
-            <form
-                onSubmit={handleSubmit(onSubmit)}
+            <TextField
+                id="email"
+                label="Email"
+                variant="outlined"
+                {...register('email')}
+                error={!!errors?.email}
+                helperText={errors?.email?.message}
                 style={{
-                    display: 'flex',
-                    flexDirection: 'column',
-                    gap: '10px',
                     width: '100%'
                 }}
-            >
-                <TextField
-                    id="email"
-                    label="Email"
-                    variant="outlined"
-                    {...register('email')}
-                    error={!!errors?.email}
-                    helperText={errors?.email?.message}
-                    style={{
-                        width: '100%'
-                    }}
-                />
-                <TextField
-                    id="password"
-                    label="Senha"
-                    variant="outlined"
-                    type="password"
-                    {...register('password')}
-                    error={!!errors?.password}
-                    helperText={errors?.password?.message}
-                    style={{
-                        width: '100%'
-                    }}
-                />
-                <Button
-                    variant="contained"
-                    color="primary"
-                    type="submit"
-                    style={{
-                        width: '100%'
-                    }}
-                >
-                    {loading ? 'Carregando...' : 'Entrar'}
-                </Button>
-            </form>
-        </Container>
+            />
+            <TextField
+                id="password"
+                label="Senha"
+                variant="outlined"
+                type="password"
+                {...register('password')}
+                error={!!errors?.password}
+                helperText={errors?.password?.message}
+                style={{
+                    width: '100%'
+                }}
+            />
+        </Form>
     )
 }
