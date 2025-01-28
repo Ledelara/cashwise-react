@@ -1,10 +1,11 @@
 export const APP_ROUTES = {
     private: {
         dashboard: {
-            name: '/dashboard'
+            name: '/'
         }
     },
     public: {
-        login: '/'
+        login: '/login',
+        register: '/register'
     }
 };
