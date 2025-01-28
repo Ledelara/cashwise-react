@@ -4,7 +4,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { registerSchema } from "@/schemas/registerSchema";
 import { useCreateUser } from "@/services/mutate";
 import { TextField } from "@mui/material";
-import Form from "../Forms/Form";
+import Form from "../Form";
 
 export default function RegisterForm() {
     const { register, handleSubmit, formState: { errors } } = useForm<IRegisterUserPayload>({

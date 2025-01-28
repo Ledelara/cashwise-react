@@ -1,4 +1,4 @@
-import RegisterForm from "@/components/RegisterForm/RegisterForm";
+import RegisterForm from "@/components/Forms/RegisterForm/RegisterForm";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
 export default function RegisterPage() {
