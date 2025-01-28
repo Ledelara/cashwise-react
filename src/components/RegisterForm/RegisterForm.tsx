@@ -1,7 +1,7 @@
 import { IRegisterUserPayload } from "@/types/@types";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { registerSchema } from "@/schemas/reegisterSchema";
+import { registerSchema } from "@/schemas/registerSchema";
 import { useCreateUser } from "@/services/mutate";
 import { Button, Container, TextField } from "@mui/material";
 
