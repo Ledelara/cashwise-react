@@ -6,7 +6,7 @@ const api = axios.create({
 })
 
 export const createUser = async (user: IRegisterUserPayload): Promise<IRegisterUserPayload> => {
-    const res = await api.post<IRegisterUserPayload>("/auth/registter", user);
+    const res = await api.post<IRegisterUserPayload>("/auth/register", user);
     return res.data;
 };
 
