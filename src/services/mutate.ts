@@ -5,6 +5,8 @@ import { useState } from "react";
 import { createUser, loginUser } from "./api";
 import { setStorageItem } from "@/utils/setStorageItem";
 import { useAlert } from "@/hooks/useAlert";
+import { useRouter } from "next/router";
+import { APP_ROUTES } from "@/constants/app-routes";
 
 const useCreateUser = () => {
   const [error, setError] = useState<string | null>(null);
@@ -40,6 +42,7 @@ const useLoginUser = () => {
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState<boolean>(false);
   const { showAlert } = useAlert();
+  const { push } = useRouter();
 
   const loginUserMutation = useMutation({
     mutationFn: loginUser,
@@ -62,6 +65,7 @@ const useLoginUser = () => {
         };
 
         showAlert("Usuário logado com sucesso!", "success");
+        push(APP_ROUTES.private.dashboard.name);
     },
     onError: (error: Error) => {
         setError(error.message);
