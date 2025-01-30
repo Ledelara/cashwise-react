@@ -1,3 +1,4 @@
+import { AlertComponent } from "@/components/Alert/AlertComponent";
 import LoginForm from "@/components/Forms/LoginForm/LoginForm";
 import { AlertProvider } from "@/contexts/AlertContext/AlertContext";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
@@ -9,6 +10,7 @@ export default function LoginPage() {
         <QueryClientProvider client={queryClient}>
             <AlertProvider>
                 <LoginForm />
+                <AlertComponent />
             </AlertProvider>
         </QueryClientProvider>
     )

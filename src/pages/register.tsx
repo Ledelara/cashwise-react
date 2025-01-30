@@ -1,3 +1,4 @@
+import { AlertComponent } from "@/components/Alert/AlertComponent";
 import RegisterForm from "@/components/Forms/RegisterForm/RegisterForm";
 import { AlertProvider } from "@/contexts/AlertContext/AlertContext";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
@@ -8,6 +9,7 @@ export default function RegisterPage() {
         <QueryClientProvider client={queryClient}>
             <AlertProvider>
                 <RegisterForm />
+                <AlertComponent />
             </AlertProvider>
         </QueryClientProvider>
     )
