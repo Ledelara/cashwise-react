@@ -19,3 +19,17 @@ export interface ILoginUserResponse {
         userId: string;
     };
 }
+
+export interface IUser {
+    name: string,
+    accountNumber?: string,
+    balance?: number,
+    statement?: [
+        {
+            userId: string,
+            type: string,
+            amount: number,
+            toAccount?: string,
+        },
+    ],
+};
