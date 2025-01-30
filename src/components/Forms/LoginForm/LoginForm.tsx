@@ -35,6 +35,7 @@ export default function LoginForm() {
                 marginTop: '50px'
             }}
             buttonLabel={loading ? 'Carregando...' : 'Entrar'}
+            loading={loading}
         >
             <TextField
                 id="email"
