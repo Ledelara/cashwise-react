@@ -1,29 +1,32 @@
 import { APP_ROUTES } from "@/constants/app-routes";
 import { checkUserAuthenticated } from "@/functions/check-user-authenticated";
 import { useRouter } from "next/navigation";
-import { ReactNode, useEffect } from "react"
+import { ReactNode, useEffect, useState } from "react";
 
 type PrivateRouteProps = {
     children: ReactNode;
-}
+};
 
 const PrivateRoute = ({ children }: PrivateRouteProps) => {
     const { push } = useRouter();
-
-    const isUserAuthenticated = checkUserAuthenticated();
+    const [isClient, setIsClient] = useState(false);
+    const [isUserAuthenticated, setIsUserAuthenticated] = useState<boolean | null>(null);
 
     useEffect(() => {
-        if (!isUserAuthenticated) {
+        setIsClient(true);
+        const authenticated = checkUserAuthenticated();
+        setIsUserAuthenticated(authenticated);
+
+        if (!authenticated) {
             push(APP_ROUTES.public.login);
         }
-    }, [isUserAuthenticated, push]);
+    }, [push]);
 
-    return (
-        <>
-            {!isUserAuthenticated && null}
-            {isUserAuthenticated && children}
-        </>
-    )
-}
+    if (!isClient || isUserAuthenticated === null) {
+        return null;
+    }
+
+    return <>{isUserAuthenticated ? children : null}</>;
+};
 
 export default PrivateRoute;
