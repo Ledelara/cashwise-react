@@ -5,10 +5,11 @@ interface FormProps {
     children: ReactNode;
     style: React.CSSProperties;
     buttonLabel: string;
+    loading?: boolean;
     onSubmit: (event: React.FormEvent<HTMLFormElement>) => void;
 };
 
-export default function Form({ children, style, buttonLabel, onSubmit }: FormProps) {
+export default function Form({ children, style, buttonLabel, loading, onSubmit }: FormProps) {
     return (
         <Container
             style={style}
@@ -30,6 +31,7 @@ export default function Form({ children, style, buttonLabel, onSubmit }: FormPro
                     style={{
                         width: '100%'
                     }}
+                    disabled={loading}
                 >
                     {buttonLabel}
                 </Button>

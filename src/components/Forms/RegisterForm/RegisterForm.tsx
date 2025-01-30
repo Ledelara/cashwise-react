@@ -35,6 +35,7 @@ export default function RegisterForm() {
                 marginTop: '50px'
             }}
             buttonLabel={loading ? 'Carregando...' : 'Cadastrar'}
+            loading={loading}
         >
             <TextField
                 id="name"
