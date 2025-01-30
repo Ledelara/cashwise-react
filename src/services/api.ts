@@ -1,5 +1,5 @@
 import axios from "axios";
-import { IRegisterUserPayload, ILoginUserPayload, ILoginUserResponse } from "@/types/@types";
+import { IRegisterUserPayload, ILoginUserPayload, ILoginUserResponse, IUser } from "@/types/@types";
 
 const api = axios.create({
     baseURL: process.env.NEXT_PUBLIC_API_URL,
@@ -14,5 +14,10 @@ export const loginUser = async (user: ILoginUserPayload): Promise<ILoginUserResp
     const res = await api.post("/auth/login", user);
     return res.data;
 };
+
+export const getUser = async (userId: string): Promise<IUser> => {
+    const res = await api.get<IUser>(`/user/profile/${userId}`);
+    return res.data;
+}
 
 export default api;
