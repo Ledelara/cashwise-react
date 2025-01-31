@@ -77,8 +77,8 @@ export default function RegisterForm() {
                     variant="outlined"
                     type="password"
                     {...register('transactionPassword')}
-                    error={!!errors?.password}
-                    helperText={errors?.password?.message}
+                    error={!!errors?.transactionPassword}
+                    helperText={errors?.transactionPassword?.message}
                     style={{
                         width: '100%'
                     }}
