@@ -1,6 +1,7 @@
 'use client'
 import { useUserQuery } from "@/services/queries";
 import styles from "./page.module.css";
+import ThemeButton from "@/components/Buttons/ThemeButton/ThemeButton";
 
 export default function Home() {
   const userId = typeof window !== "undefined" ? localStorage.getItem("userId") : null;
@@ -18,6 +19,7 @@ export default function Home() {
             <p>Bem-vindo, {user.name}!</p>
             <p>Conta: {user.accountNumber}</p>
             <p>Saldo: {user.balance}</p>
+            <ThemeButton />
           </div>
         )}
       </main>
