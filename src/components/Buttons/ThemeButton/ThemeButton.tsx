@@ -4,7 +4,7 @@ import { IconButton } from "@mui/material";
 import { Brightness4, Brightness7 } from "@mui/icons-material";
 import { useTheme } from "@/contexts/Theme/ThemeContext";
 
-export default function ThemeToggleButton() {
+export default function ThemeButton() {
   const { toggleTheme, mode } = useTheme();
 
   return (
