@@ -1,5 +1,6 @@
 'use client'
 import PrivateRoute from "@/components/PrivateRoute";
+import PublicRoute from "@/components/PublicRoute";
 import { ThemeProviderComponent } from "@/contexts/Theme/ThemeContext";
 import { checkIsPublicRoute } from "@/functions/check-is-public-route";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
@@ -20,14 +21,17 @@ export default function RootLayout({
     <html lang="pt-BR">
       <body>
         <QueryClientProvider client={queryClient}>
-        <ThemeProviderComponent>
-          {isPublicPage && children}
-          {!isPublicPage && (
-            <PrivateRoute>
-              {children}
-            </PrivateRoute>
-          )}
-        </ThemeProviderComponent>
+          <ThemeProviderComponent>
+            {isPublicPage ? (
+              <PublicRoute>
+                {children}
+              </PublicRoute>
+            ) : (
+              <PrivateRoute>
+                {children}
+              </PrivateRoute>
+            )}
+          </ThemeProviderComponent>
         </QueryClientProvider>
       </body>
     </html>
