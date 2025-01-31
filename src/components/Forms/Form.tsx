@@ -1,4 +1,4 @@
-import { Button, Container } from "@mui/material";
+import { Box, Button } from "@mui/material";
 import { ReactNode } from "react";
 
 interface FormProps {
@@ -11,7 +11,7 @@ interface FormProps {
 
 export default function Form({ children, style, buttonLabel, loading, onSubmit }: FormProps) {
     return (
-        <Container
+        <Box
             style={style}
         >
             <form
@@ -36,6 +36,6 @@ export default function Form({ children, style, buttonLabel, loading, onSubmit }
                     {buttonLabel}
                 </Button>
             </form>
-        </Container>
+        </Box>
     )
 };
