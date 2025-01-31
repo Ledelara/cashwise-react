@@ -49,7 +49,8 @@ export default function Dashboard() {
                 variant="body1"
                 component="p"
                 sx={{
-                  textAlign: "left"
+                  textAlign: "left",
+                  fontSize: "14px",
                 }}
               >
                 Conta: {user?.accountNumber}
