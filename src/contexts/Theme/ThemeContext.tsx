@@ -1,7 +1,9 @@
 "use client";
 
+import { getStorageItem } from "@/utils/getStorageItem";
+import { setStorageItem } from "@/utils/setStorageItem";
 import { createTheme, CssBaseline, ThemeProvider } from "@mui/material";
-import { createContext, ReactNode, useContext, useMemo, useState } from "react";
+import { createContext, ReactNode, useContext, useEffect, useMemo, useState } from "react";
 
 type ThemeContextType = {
   toggleTheme: () => void;
@@ -19,7 +21,13 @@ export function useTheme() {
 }
 
 export function ThemeProviderComponent({ children }: { children: ReactNode }) {
-  const [mode, setMode] = useState<"light" | "dark">("light");
+  const [mode, setMode] = useState<"light" | "dark">(() => {
+    return getStorageItem("theme") as "light" | "dark" || "light";
+  });
+
+  useEffect(() => {
+    setStorageItem("theme", mode);
+  })
 
   const toggleTheme = () => {
     setMode((prevMode) => (prevMode === "light" ? "dark" : "light"));
