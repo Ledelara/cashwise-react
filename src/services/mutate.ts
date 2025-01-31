@@ -56,12 +56,20 @@ const useLoginUser = () => {
         console.log("Resposta completa do onSuccess:", data); 
 
         const token = data?.result?.token;
+        const userId = data?.result?.userId;
         console.log("Token recebido:", token);
+        console.log("Id do usuário:", userId);
 
         if (token) {
             setStorageItem("userToken", token);
         } else {
             console.log("Token não encontrado na resposta.");
+        };
+
+        if (userId) {
+            setStorageItem("userId", userId);
+        } else {
+            console.log("Id do usuário não encontrado na resposta.");
         };
 
         showAlert("Usuário logado com sucesso!", "success");
