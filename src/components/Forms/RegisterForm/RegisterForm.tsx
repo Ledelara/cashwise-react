@@ -3,11 +3,12 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { registerSchema } from "@/schemas/registerSchema";
 import { useCreateUser } from "@/services/mutate";
-import { Link, TextField, Typography } from "@mui/material";
+import { Link, TextField, Typography, useTheme } from "@mui/material";
 import Form from "../Form";
 import { APP_ROUTES } from "@/constants/app-routes";
 
 export default function RegisterForm() {
+    const { palette } = useTheme();
     const { register, handleSubmit, formState: { errors } } = useForm<IRegisterUserPayload>({
         resolver: zodResolver(registerSchema),
     });
@@ -23,7 +24,7 @@ export default function RegisterForm() {
             <Form
                 onSubmit={handleSubmit(onSubmit)}
                 style={{
-                    backgroundColor: '#f5f5f5',
+                    backgroundColor: palette.background.paper,
                     padding: '20px',
                     borderRadius: '10px',
                     boxShadow: '0 0 10px rgba(0, 0, 0, 0.1)',
@@ -45,7 +46,8 @@ export default function RegisterForm() {
                     error={!!errors?.name}
                     helperText={errors?.name?.message}
                     style={{
-                        width: '100%'
+                        width: '100%',
+                        backgroundColor: palette.background.default,
                     }}
                 />
                 <TextField
@@ -56,7 +58,8 @@ export default function RegisterForm() {
                     error={!!errors?.email}
                     helperText={errors?.email?.message}
                     style={{
-                        width: '100%'
+                        width: '100%',
+                        backgroundColor: palette.background.default,
                     }}
                 />
                 <TextField
@@ -68,7 +71,8 @@ export default function RegisterForm() {
                     error={!!errors?.password}
                     helperText={errors?.password?.message}
                     style={{
-                        width: '100%'
+                        width: '100%',
+                        backgroundColor: palette.background.default,
                     }}
                 />
                 <TextField
@@ -80,11 +84,12 @@ export default function RegisterForm() {
                     error={!!errors?.transactionPassword}
                     helperText={errors?.transactionPassword?.message}
                     style={{
-                        width: '100%'
+                        width: '100%',
+                        backgroundColor: palette.background.default,
                     }}
                 />
             </Form>
-            <Typography variant="body2" style={{ marginTop: '10px', textAlign: 'center' }}>
+            <Typography variant="body2" style={{ marginTop: '10px', textAlign: 'center', color: palette.text.primary }}>
                 Já tem uma conta? <Link href={APP_ROUTES.public.login}>Entrar</Link>
             </Typography>
         </div>
