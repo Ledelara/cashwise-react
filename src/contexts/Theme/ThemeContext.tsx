@@ -1,5 +1,4 @@
 "use client";
-
 import { getStorageItem } from "@/utils/getStorageItem";
 import { setStorageItem } from "@/utils/setStorageItem";
 import { createTheme, CssBaseline, ThemeProvider } from "@mui/material";
