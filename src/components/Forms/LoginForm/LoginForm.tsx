@@ -2,12 +2,13 @@ import { loginSchema } from "@/schemas/loginSchema"
 import { useLoginUser } from "@/services/mutate";
 import { ILoginUserPayload } from "@/types/@types"
 import { zodResolver } from "@hookform/resolvers/zod"
-import { Link, TextField, Typography } from "@mui/material";
+import { Link, TextField, Typography, useTheme } from "@mui/material";
 import { useForm } from "react-hook-form"
 import Form from "../Form";
 import { APP_ROUTES } from "@/constants/app-routes";
 
 export default function LoginForm() {
+    const { palette } = useTheme();
     const { register, handleSubmit, formState: { errors } } = useForm<ILoginUserPayload>({
         resolver: zodResolver(loginSchema),
     });
@@ -23,7 +24,7 @@ export default function LoginForm() {
             <Form
                 onSubmit={handleSubmit(onSubmit)}
                 style={{
-                    backgroundColor: '#f5f5f5',
+                    backgroundColor: palette.background.paper,
                     padding: '20px',
                     borderRadius: '10px',
                     boxShadow: '0 0 10px rgba(0, 0, 0, 0.1)',
@@ -45,7 +46,8 @@ export default function LoginForm() {
                     error={!!errors?.email}
                     helperText={errors?.email?.message}
                     style={{
-                        width: '100%'
+                        width: '100%',
+                        backgroundColor: palette.background.default,
                     }}
                 />
                 <TextField
@@ -57,11 +59,12 @@ export default function LoginForm() {
                     error={!!errors?.password}
                     helperText={errors?.password?.message}
                     style={{
-                        width: '100%'
+                        width: '100%',
+                        backgroundColor: palette.background.default,
                     }}
                 />
             </Form>
-            <Typography variant="body2" style={{ marginTop: '10px', textAlign: 'center' }}>
+            <Typography variant="body2" style={{ marginTop: '10px', textAlign: 'center', color: palette.text.secondary }}>
                 Não tem uma conta? <Link href={APP_ROUTES.public.register}>Cadastre-se</Link>
             </Typography>
         </div>
