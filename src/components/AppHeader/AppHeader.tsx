@@ -5,6 +5,7 @@ import { useState } from "react";
 import { removeStorageItem } from "@/utils/removeStorageItem";
 import { useRouter } from "next/navigation";
 import { checkUserAuthenticated } from "@/functions/check-user-authenticated";
+import AppIcon from "../Icons/AppIcon";
 
 export default function AppHeader() {
     const [isOpen, setIsOpen] = useState(false);
@@ -32,7 +33,20 @@ export default function AppHeader() {
                     }}
                 >
                     <ThemeButton />
-                    {authenticared && <Button color="inherit" onClick={() => setIsOpen(true)}>Sair</Button>}
+                    {
+                        authenticared && (
+                            <Button 
+                                sx={{
+                                    gap: '0.5rem',
+                                }}
+                                color="inherit" 
+                                onClick={() => setIsOpen(true)}
+                            >
+                                Sair
+                                <AppIcon name="Logout" />
+                            </Button>
+                        )
+                    }
                     <ModalComponent
                         isOpen={isOpen}
                         onClose={() => setIsOpen(false)}
