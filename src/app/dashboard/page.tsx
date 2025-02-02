@@ -17,7 +17,7 @@ export default function Dashboard() {
       }}
     >
         <LoadingComponent isLoading={isLoading} />  
-        {isError && <Typography variant="h6" component="p">Erro ao carregar usuári.</Typography>}
+        {isError && <Typography variant="h6" component="p">Erro ao carregar usuário.</Typography>}
         {user && (
           <Card
             sx={{
