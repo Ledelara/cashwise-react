@@ -4,7 +4,9 @@ import {
     Logout, 
     AccountBalanceWallet, 
     Payments, 
-    AttachMoney 
+    AttachMoney, 
+    CreditCard,
+    AccountBalance
 } from "@mui/icons-material";
 
 const ICONS = [
@@ -27,6 +29,10 @@ const ICONS = [
     {
         title: "Withdrawal",
         icon: <AttachMoney />,
+    },
+    {
+        title: "CreditCard",
+        icon: <CreditCard />,
     },
 ]
 
