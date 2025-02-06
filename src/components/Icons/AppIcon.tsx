@@ -7,29 +7,35 @@ import {
     AttachMoney 
 } from "@mui/icons-material";
 
-type IconName = 
-| 'Settings' 
-| 'Logout'
-| 'Deposit' 
-| 'Transfer'
-| 'Withdrawal'
+const ICONS = [
+    {
+        title: "Settings",
+        icon: <Settings />,
+    },
+    {
+        title: "Logout",
+        icon: <Logout />,
+    },
+    {
+        title: "Deposit",
+        icon: <AccountBalanceWallet />,
+    },
+    {
+        title: "Transfer",
+        icon: <Payments />,
+    },
+    {
+        title: "Withdrawal",
+        icon: <AttachMoney />,
+    },
+]
 
-interface AppIconProps extends SvgIconProps {
-    name: IconName;
+const AppIcon = ({ iconTitle }: { iconTitle: string } & SvgIconProps) => {
+    const icon = ICONS.find((icon) => icon.title === iconTitle);
+
+    if (!icon) return null;
+
+    return icon.icon;
 };
-
-const icons = {
-    Settings: Settings,
-    Logout: Logout,
-    Deposit: AccountBalanceWallet,
-    Transfer: Payments,
-    Withdrawal: AttachMoney,
-};
-
-const AppIcon: React.FC<AppIconProps> = ({ name, ...props }) => {
-    const IconComponent = icons[name];
-  
-    return IconComponent ? <IconComponent {...props} /> : null;
-  };
 
 export default AppIcon;

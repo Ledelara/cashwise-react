@@ -43,7 +43,7 @@ export default function AppHeader() {
                                 onClick={() => setIsOpen(true)}
                             >
                                 Sair
-                                <AppIcon name="Logout" />
+                                <AppIcon iconTitle="Logout" />
                             </Button>
                         )
                     }
