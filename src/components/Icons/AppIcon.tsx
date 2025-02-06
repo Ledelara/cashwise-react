@@ -6,7 +6,6 @@ import {
     Payments, 
     AttachMoney, 
     CreditCard,
-    AccountBalance
 } from "@mui/icons-material";
 
 const ICONS = [
