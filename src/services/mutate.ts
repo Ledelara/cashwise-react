@@ -1,8 +1,8 @@
 "use client";
 
-import { useMutation } from "@tanstack/react-query";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useState } from "react";
-import { createDeposit, createUser, loginUser } from "./api";
+import { createUser, depositAmount, loginUser } from "./api";
 import { setStorageItem } from "@/utils/setStorageItem";
 import { useAlert } from "@/hooks/useAlert";
 import { useRouter } from "next/router";
@@ -93,10 +93,11 @@ const useLoginUser = () => {
 const useDeposit = () => {
   const [error, setError] = useState<string | null>(null);  
   const [loading, setLoading] = useState<boolean>(false);
+  const queryClient = useQueryClient();
   const { showAlert } = useAlert();
 
   const createDepositMutation = useMutation({
-    mutationFn: createDeposit,
+    mutationFn: ({ amount, id }: { amount: number; id: string }) => depositAmount(amount, id),
     onMutate: () => {
       setLoading(true);
       setError(null);
@@ -105,6 +106,7 @@ const useDeposit = () => {
       setLoading(false);
       console.log("Deposit created successfully");
       showAlert("Depósito realizado com sucesso!", "success");  
+      queryClient.invalidateQueries({ queryKey: ['user'] });
     },
     onError: (error: Error) => {
       setError(error.message);

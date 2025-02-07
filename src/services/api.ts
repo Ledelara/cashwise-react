@@ -3,8 +3,7 @@ import {
     IRegisterUserPayload, 
     ILoginUserPayload, 
     ILoginUserResponse, 
-    IUser, 
-    IDepositPayload 
+    IUser,
 } from "@/types/@types";
 
 const api = axios.create({
@@ -26,8 +25,8 @@ export const getUser = async (userId: string): Promise<IUser> => {
     return res.data;
 }
 
-export const createDeposit = async (id: string): Promise<IDepositPayload> => {
-    const res = await api.post(`/user/${id}/deposit`,);
+export const depositAmount = async (amount: number, id: string) => {
+    const res = await api.post(`/user/${id}/deposit`, { amount });
     return res.data;
 }
 
