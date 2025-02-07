@@ -2,7 +2,7 @@
 
 import { useMutation } from "@tanstack/react-query";
 import { useState } from "react";
-import { createUser, loginUser } from "./api";
+import { createDeposit, createUser, loginUser } from "./api";
 import { setStorageItem } from "@/utils/setStorageItem";
 import { useAlert } from "@/hooks/useAlert";
 import { useRouter } from "next/router";
@@ -90,4 +90,34 @@ const useLoginUser = () => {
   return { loginUserMutation, error, loading };
 };
 
-export { useCreateUser, useLoginUser };
+const useDeposit = () => {
+  const [error, setError] = useState<string | null>(null);  
+  const [loading, setLoading] = useState<boolean>(false);
+  const { showAlert } = useAlert();
+
+  const createDepositMutation = useMutation({
+    mutationFn: createDeposit,
+    onMutate: () => {
+      setLoading(true);
+      setError(null);
+    },
+    onSuccess: () => {
+      setLoading(false);
+      console.log("Deposit created successfully");
+      showAlert("Depósito realizado com sucesso!", "success");  
+    },
+    onError: (error: Error) => {
+      setError(error.message);
+      setLoading(false);
+      console.log("Error creating deposit", error);
+      showAlert("Erro ao realizar depósito", "error");
+    },
+    onSettled: () => {
+      setLoading(false);
+    },
+  });
+
+  return { createDepositMutation, error, loading };
+}
+
+export { useCreateUser, useLoginUser, useDeposit };
