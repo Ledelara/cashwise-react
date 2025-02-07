@@ -20,10 +20,6 @@ export interface ILoginUserResponse {
     };
 }
 
-export interface IDepositPayload {
-    amount: number;
-}
-
 export interface IUser {
     name: string,
     accountNumber?: string,
