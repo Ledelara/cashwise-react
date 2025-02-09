@@ -2,7 +2,6 @@ import { APP_ROUTES } from "@/constants/app-routes";
 import { checkUserAuthenticated } from "@/functions/check-user-authenticated";
 import { useRouter } from "next/navigation";
 import { ReactNode, useEffect, useState } from "react";
-import AppHeader from "../AppHeader/AppHeader";
 import { ThemeProviderComponent } from "@/contexts/Theme/ThemeContext";
 
 type PublicRouteProps = {
@@ -30,7 +29,6 @@ const PublicRoute = ({ children }: PublicRouteProps) => {
 
     return (
         <ThemeProviderComponent>
-            <AppHeader />
             {!isUserAuthenticated ? children : null}
         </ThemeProviderComponent>
     );

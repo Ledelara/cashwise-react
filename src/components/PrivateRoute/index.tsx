@@ -3,7 +3,6 @@ import { ThemeProviderComponent } from "@/contexts/Theme/ThemeContext";
 import { checkUserAuthenticated } from "@/functions/check-user-authenticated";
 import { useRouter } from "next/navigation";
 import { ReactNode, useEffect, useState } from "react";
-import AppHeader from "../AppHeader/AppHeader";
 
 type PrivateRouteProps = {
     children: ReactNode;
@@ -30,7 +29,6 @@ const PrivateRoute = ({ children }: PrivateRouteProps) => {
 
     return (
         <ThemeProviderComponent>
-            <AppHeader />
             {isUserAuthenticated ? children : null}
         </ThemeProviderComponent>
     );
