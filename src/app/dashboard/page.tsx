@@ -1,93 +1,55 @@
 'use client'
 import { useUserQuery } from "@/services/queries";
-import { Box, Card, Container, Typography } from "@mui/material";
+import { Box, Container } from "@mui/material";
 import LoadingComponent from "@/components/Loading/Loading";
+import AccountBalanceIcon from "@mui/icons-material/AccountBalance";
+import ErrorMessage from "@/components/Message/ErrorMessage/ErrorMessage";
+import ContainerCard from "@/app/dashboard/components/ContainerCard/ContainerCard";
+import UserInfo from "./components/UserInfo/UserInfo";
+import BalanceCard from "./components/BalanceCard/BalanceCard";
+import GroupedButtons from "./components/GroupedButttons/GroupedButtons";
 
 export default function Dashboard() {
+
   const userId = typeof window !== "undefined" ? localStorage.getItem("userId") : null;
   const { data: user, isLoading, isError } = useUserQuery(userId);
 
   return (
-    <Container
+    <Box
       sx={{
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
         height: "100vh",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+        flexDirection: "column",
+        background: "linear-gradient(135deg, #1e3c72 0%, #2a5298 100%)",
+        gap: 2,
       }}
     >
-        <LoadingComponent isLoading={isLoading} />  
-        {isError && <Typography variant="h6" component="p">Erro ao carregar usuári.</Typography>}
-        {user && (
-          <Card
-            sx={{
-              padding: 2,
-              width: 500,
-              height: 200,
-              display: "flex",
-              justifyContent: "space-between",
-              alignItems: "center",
-            }}
-          >
-            <Box
-              sx={{
-                display: "flex",
-                flexDirection: "column",
-                justifyContent: "center",
-              }}
-            >
-              <Typography
-                variant="h5"
-                component="h1"
-                sx={{
-                  textAlign: "left",
-                }}
-              >
-                Bem vindo, {user?.name}!
-              </Typography>
-              <Typography
-                variant="body1"
-                component="p"
-                sx={{
-                  textAlign: "left",
-                  fontSize: "14px",
-                }}
-              >
-                Conta: {user?.accountNumber}
-              </Typography>
-            </Box>
+      <Container 
+        maxWidth="sm"
+        sx={{
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+          justifyContent: "center",
+          gap: 2,
+        }}
+      >
+        <LoadingComponent isLoading={isLoading} />
 
-            <Box
-              sx={{
-                display: "flex",
-                flexDirection: "column",
-                justifyContent: "center",
-              }}
-            >
-              <Typography
-                variant="h5"
-                component="h1"
-                sx={{
-                  textAlign: "right",
-                }}
-              >
-                Saldo
-              </Typography>
-              <Typography
-                variant="body1"
-                component="p"
-                sx={{
-                  color: (user?.balance ?? 0) == 0 ? "error.main" : "success.main",
-                  fontWeight: "bold",
-                  fontSize: "1.5rem",
-                  textAlign: "right"
-                }}
-              >
-                R$ {user?.balance}
-              </Typography>
-            </Box>
-          </Card>
+        {isError && <ErrorMessage message="Erro ao carregar usuário." />}
+
+        {user && (
+          <ContainerCard
+            userInfo={<UserInfo name={user.name} accountNumber={String(user.accountNumber)} />}
+            icon={<AccountBalanceIcon sx={{ fontSize: 40, opacity: 0.7 }} />}
+            balance={<BalanceCard balance={Number(user.balance)} />}
+          />
+
         )}
-    </Container>
+      </Container>
+      <GroupedButtons />
+    </Box>
   );
 }

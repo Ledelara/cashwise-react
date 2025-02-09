@@ -1,8 +1,8 @@
 "use client";
 
-import { useMutation } from "@tanstack/react-query";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useState } from "react";
-import { createUser, loginUser } from "./api";
+import { createUser, depositAmount, loginUser } from "./api";
 import { setStorageItem } from "@/utils/setStorageItem";
 import { useAlert } from "@/hooks/useAlert";
 import { useRouter } from "next/router";
@@ -90,4 +90,36 @@ const useLoginUser = () => {
   return { loginUserMutation, error, loading };
 };
 
-export { useCreateUser, useLoginUser };
+const useDeposit = () => {
+  const [error, setError] = useState<string | null>(null);  
+  const [loading, setLoading] = useState<boolean>(false);
+  const queryClient = useQueryClient();
+  const { showAlert } = useAlert();
+
+  const createDepositMutation = useMutation({
+    mutationFn: ({ amount, id }: { amount: number; id: string }) => depositAmount(amount, id),
+    onMutate: () => {
+      setLoading(true);
+      setError(null);
+    },
+    onSuccess: () => {
+      setLoading(false);
+      console.log("Deposit created successfully");
+      showAlert("Depósito realizado com sucesso!", "success");  
+      queryClient.invalidateQueries({ queryKey: ['user'] });
+    },
+    onError: (error: Error) => {
+      setError(error.message);
+      setLoading(false);
+      console.log("Error creating deposit", error);
+      showAlert("Erro ao realizar depósito", "error");
+    },
+    onSettled: () => {
+      setLoading(false);
+    },
+  });
+
+  return { createDepositMutation, error, loading };
+}
+
+export { useCreateUser, useLoginUser, useDeposit };
