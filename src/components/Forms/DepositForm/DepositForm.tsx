@@ -4,6 +4,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { Box, Modal, TextField } from "@mui/material";
 import { useForm } from "react-hook-form";
 import Form from "../Form";
+import { useEffect } from "react";
 
 interface DepositFormProps {
     isOpen: boolean;
@@ -13,7 +14,7 @@ interface DepositFormProps {
 
 export default function DepositForm({ isOpen, onClose, modalTitle }: DepositFormProps) {
 
-    const { register, handleSubmit, formState: { errors } } = useForm<{ amount: number }>({
+    const { register, handleSubmit, formState: { errors }, reset } = useForm<{ amount: number }>({
         resolver: zodResolver(depositSchema),
     });
 
@@ -24,6 +25,12 @@ export default function DepositForm({ isOpen, onClose, modalTitle }: DepositForm
         const formattedAmount = parseFloat(String(data.amount));
         createDepositMutation.mutate({ amount: formattedAmount, id: getUserId ?? '' });
     };
+
+    useEffect(() => {
+        if (!isOpen) {
+            reset();
+        };
+    }, [isOpen, reset]);
 
     return (
         <Modal
