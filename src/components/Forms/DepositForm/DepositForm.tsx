@@ -1,7 +1,7 @@
 import { depositSchema } from "@/schemas/depositSchema";
 import { useDeposit } from "@/services/mutate";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { Box, Modal, TextField, useTheme } from "@mui/material";
+import { Box, Modal, TextField } from "@mui/material";
 import { useForm } from "react-hook-form";
 import Form from "../Form";
 
@@ -12,7 +12,6 @@ interface DepositFormProps {
 }
 
 export default function DepositForm({ isOpen, onClose, modalTitle }: DepositFormProps) {
-    const { palette } = useTheme();
 
     const { register, handleSubmit, formState: { errors } } = useForm<{ amount: number }>({
         resolver: zodResolver(depositSchema),
@@ -25,7 +24,6 @@ export default function DepositForm({ isOpen, onClose, modalTitle }: DepositForm
         const formattedAmount = parseFloat(String(data.amount));
         createDepositMutation.mutate({ amount: formattedAmount, id: getUserId ?? '' });
     };
-
 
     return (
         <Modal
@@ -48,12 +46,13 @@ export default function DepositForm({ isOpen, onClose, modalTitle }: DepositForm
                     alignItems: 'center',
                     justifyContent: 'center',
                     padding: '10px',
+                    background: '#2a5298'
                 }}
             >
                 <Form
                     onSubmit={handleSubmit(onSubmit)}
                     style={{
-                        backgroundColor: palette.background.paper,
+                        background: '#2a5298',
                         padding: '20px',
                         borderRadius: '10px',
                         boxShadow: '0 0 10px rgba(0, 0, 0, 0.1)',
@@ -77,7 +76,8 @@ export default function DepositForm({ isOpen, onClose, modalTitle }: DepositForm
                         helperText={errors?.amount?.message}
                         style={{
                             width: "100%",
-                            backgroundColor: palette.background.default,
+                            background: '#2a5298',
+                            color: '#fff',
                         }}
                     />
                 </Form>
