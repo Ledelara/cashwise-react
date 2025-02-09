@@ -1,5 +1,9 @@
-import { Box, Typography } from "@mui/material";
+import { Box, Button, Typography } from "@mui/material";
 import AppIcon from "@/components/Icons/AppIcon";
+import { useState } from "react";
+import { useRouter } from "next/navigation";
+import { removeStorageItem } from "@/utils/removeStorageItem";
+import ModalComponent from "@/components/Modal/ModalComponent";
 
 type UserInfoProps = {
   name: string;
@@ -7,6 +11,20 @@ type UserInfoProps = {
 };
 
 export default function UserInfo({ name, accountNumber }: UserInfoProps) {
+
+  const [isOpen, setIsOpen] = useState(false);
+  const { push } = useRouter(); 
+
+  const logout = () => {
+    removeStorageItem("userToken");
+    removeStorageItem("userId");
+
+    if (removeStorageItem("userToken") !== null && removeStorageItem("userId") !== null) {
+      setIsOpen(false);
+      push("/login");
+    }; 
+  };
+
   return (
     <Box display="flex" flexDirection="column">
       <Typography variant="h5" fontWeight="bold">
@@ -18,6 +36,25 @@ export default function UserInfo({ name, accountNumber }: UserInfoProps) {
           Conta: {accountNumber}
         </Typography>
       </Box>
+      <Button 
+        onClick={() => setIsOpen(true)}
+        sx={{ 
+          alignSelf: "flex-start", 
+          display: "inline-flex", 
+          minWidth: "auto", 
+          padding: 0,
+          color: 'inherit',
+        }}
+      >
+        <AppIcon iconTitle="Logout" />
+      </Button>
+      <ModalComponent
+        isOpen={isOpen}
+        onClose={() => setIsOpen(false)}
+        onConfirm={logout}
+        modalTitle="Sair"
+        modalDescription="Tem certeza de que deseja sair?"
+      />
     </Box>
   );
 }
