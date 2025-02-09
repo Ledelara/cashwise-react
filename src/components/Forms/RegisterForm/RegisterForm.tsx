@@ -34,6 +34,7 @@ export default function RegisterForm() {
                     alignItems: 'center',
                     gap: '10px',
                     width: '300px',
+                    background: "rgba(255, 255, 255, 0.1)",
                 }}
                 buttonLabel={loading ? 'Carregando...' : 'Cadastrar'}
                 loading={loading}
@@ -47,7 +48,8 @@ export default function RegisterForm() {
                     helperText={errors?.name?.message}
                     style={{
                         width: '100%',
-                        backgroundColor: palette.background.default,
+                        backgroundColor: 'rgba(255, 255, 255, 0.1)',
+                        color: '#fff',
                     }}
                 />
                 <TextField
@@ -59,7 +61,8 @@ export default function RegisterForm() {
                     helperText={errors?.email?.message}
                     style={{
                         width: '100%',
-                        backgroundColor: palette.background.default,
+                        backgroundColor: 'rgba(255, 255, 255, 0.1)',
+                        color: '#fff',
                     }}
                 />
                 <TextField
@@ -72,7 +75,8 @@ export default function RegisterForm() {
                     helperText={errors?.password?.message}
                     style={{
                         width: '100%',
-                        backgroundColor: palette.background.default,
+                        backgroundColor: 'rgba(255, 255, 255, 0.1)',
+                        color: '#fff',
                     }}
                 />
                 <TextField
@@ -85,7 +89,8 @@ export default function RegisterForm() {
                     helperText={errors?.transactionPassword?.message}
                     style={{
                         width: '100%',
-                        backgroundColor: palette.background.default,
+                        backgroundColor: 'rgba(255, 255, 255, 0.1)',
+                        color: '#fff',
                     }}
                 />
             </Form>

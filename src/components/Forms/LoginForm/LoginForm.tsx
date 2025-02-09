@@ -34,6 +34,7 @@ export default function LoginForm() {
                     alignItems: 'center',
                     gap: '10px',
                     width: '300px',
+                    background: "rgba(255, 255, 255, 0.1)",
                 }}
                 buttonLabel={loading ? 'Carregando...' : 'Entrar'}
                 loading={loading}
@@ -47,7 +48,8 @@ export default function LoginForm() {
                     helperText={errors?.email?.message}
                     style={{
                         width: '100%',
-                        backgroundColor: palette.background.default,
+                        backgroundColor: 'rgba(255, 255, 255, 0.1)',
+                        color: '#fff', 
                     }}
                 />
                 <TextField
@@ -60,7 +62,8 @@ export default function LoginForm() {
                     helperText={errors?.password?.message}
                     style={{
                         width: '100%',
-                        backgroundColor: palette.background.default,
+                        backgroundColor: 'rgba(255, 255, 255, 0.1)',
+                        color: '#fff',    
                     }}
                 />
             </Form>

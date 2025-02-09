@@ -19,7 +19,8 @@ export default function LoginPage() {
                             justifyContent: 'center',
                             alignItems: 'center',
                             height: '100vh',
-                            width: '100%'
+                            width: '100%',
+                            background: "linear-gradient(135deg, #1e3c72 0%, #2a5298 100%)",
                         }}
                     >
                         <LoginForm />
