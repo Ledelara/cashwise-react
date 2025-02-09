@@ -22,7 +22,7 @@ export default function DepositForm({ isOpen, onClose, modalTitle }: DepositForm
     const getUserId = typeof window !== 'undefined' ? localStorage.getItem('userId') : null;
 
     const onSubmit = async (data: { amount: number }) => {
-        const formattedAmount = parseFloat(String(data.amount).replace(",", "."));
+        const formattedAmount = parseFloat(String(data.amount));
         createDepositMutation.mutate({ amount: formattedAmount, id: getUserId ?? '' });
     };
 
