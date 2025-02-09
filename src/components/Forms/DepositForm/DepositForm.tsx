@@ -69,7 +69,7 @@ export default function DepositForm({ isOpen, onClose, modalTitle }: DepositForm
                 >
                     <TextField
                         id="amount"
-                        label="Valor"
+                        label="Insira o valor do depósito"
                         variant="outlined"
                         type="text"
                         {...register("amount", { valueAsNumber: true })}
