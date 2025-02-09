@@ -20,10 +20,20 @@ export default function Dashboard() {
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
+        flexDirection: "column",
         background: "linear-gradient(135deg, #1e3c72 0%, #2a5298 100%)",
       }}
     >
-      <Container maxWidth="sm">
+      <Container 
+        maxWidth="sm"
+        sx={{
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+          justifyContent: "center",
+          gap: 2,
+        }}
+      >
         <LoadingComponent isLoading={isLoading} />
 
         {isError && <ErrorMessage message="Erro ao carregar usuário." />}
