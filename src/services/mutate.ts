@@ -2,7 +2,7 @@
 
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useState } from "react";
-import { createUser, depositAmount, loginUser } from "./api";
+import { createUser, depositAmount, loginUser, withdrawAmount } from "./api";
 import { setStorageItem } from "@/utils/setStorageItem";
 import { useAlert } from "@/hooks/useAlert";
 import { useRouter } from "next/router";
@@ -122,4 +122,41 @@ const useDeposit = () => {
   return { createDepositMutation, error, loading };
 }
 
-export { useCreateUser, useLoginUser, useDeposit };
+const useWithdraw = () => {
+  const [error, setError] = useState<string | null>(null);
+  const [loading, setLoading] = useState<boolean>(false);
+  const queryClient = useQueryClient();
+  const { showAlert } = useAlert();
+
+  const createWithdawMutation = useMutation({
+    mutationFn: ({ amount, id }: { amount: number; id: string}) => withdrawAmount(amount, id),
+    onMutate: () => {
+      setLoading(true);
+      setError(null); 
+    },
+    onSuccess: () => {
+      setLoading(false);
+      console.log("Withdraw created successfully");
+      showAlert("Saque realizado com sucesso!", "success");
+      queryClient.invalidateQueries({ queryKey: ['user'] });
+    },
+    onError: (error: Error) => {
+      setError(error.message);
+      setLoading(false);
+      console.log("Error creating withdraw", error);
+      showAlert("Erro ao realizar saque", "error");
+    },
+    onSettled: () => {
+      setLoading(false);
+    },
+  });
+
+  return { createWithdawMutation, error, loading };
+}
+
+export { 
+  useCreateUser, 
+  useLoginUser, 
+  useDeposit, 
+  useWithdraw 
+};
