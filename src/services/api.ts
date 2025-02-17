@@ -30,4 +30,9 @@ export const depositAmount = async (amount: number, id: string) => {
     return res.data;
 }
 
+export const withdrawAmount = async (amount: number, id: string) => {
+    const res = await api.put(`/user/withdraw/${id}`, { amount });
+    return res.data;
+}
+
 export default api;
