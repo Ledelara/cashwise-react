@@ -18,7 +18,7 @@ export default function BalanceCard({ balance }: BalanceCardProps) {
         Saldo Disponível
       </Typography>
       <Typography variant="h4" fontWeight="bold" color={balance === 0 ? "error.main" : "success.main"}>
-        R$ {balance}
+        R$ {balance.toFixed(2)}
       </Typography>
     </Card>
   );
