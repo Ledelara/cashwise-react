@@ -13,7 +13,7 @@ type UserInfoProps = {
 export default function UserInfo({ name, accountNumber }: UserInfoProps) {
 
   const [isOpen, setIsOpen] = useState(false);
-  const { push } = useRouter(); 
+  const { push } = useRouter();
 
   const logout = () => {
     removeStorageItem("userToken");
@@ -22,7 +22,7 @@ export default function UserInfo({ name, accountNumber }: UserInfoProps) {
     if (removeStorageItem("userToken") !== null && removeStorageItem("userId") !== null) {
       setIsOpen(false);
       push("/login");
-    }; 
+    };
   };
 
   return (
@@ -36,18 +36,23 @@ export default function UserInfo({ name, accountNumber }: UserInfoProps) {
           Conta: {accountNumber}
         </Typography>
       </Box>
-      <Button 
-        onClick={() => setIsOpen(true)}
-        sx={{ 
-          alignSelf: "flex-start", 
-          display: "inline-flex", 
-          minWidth: "auto", 
-          padding: 0,
-          color: 'inherit',
-        }}
-      >
-        <AppIcon iconTitle="Logout" />
-      </Button>
+      <Box display="flex" alignItems="center" gap={1} mt={1}>
+        <Button
+          onClick={() => setIsOpen(true)}
+          sx={{
+            alignSelf: "flex-start",
+            display: "inline-flex",
+            minWidth: "auto",
+            padding: 0,
+            color: 'inherit',
+          }}
+        >
+          <AppIcon iconTitle="Logout" />
+        </Button>
+        <Typography variant="body1" fontSize="16px">
+          Sair
+        </Typography>
+      </Box>
       <ModalComponent
         isOpen={isOpen}
         onClose={() => setIsOpen(false)}
