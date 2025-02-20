@@ -35,4 +35,9 @@ export const withdrawAmount = async (amount: number, id: string) => {
     return res.data;
 }
 
+export const transferAmount = async (amount: number, toAccountNumber: string, id: string) => {
+    const res = await api.post(`/user/${id}/transfer`, { amount, toAccountNumber });
+    return res.data;
+}
+
 export default api;
