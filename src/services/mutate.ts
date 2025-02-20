@@ -2,7 +2,7 @@
 
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useState } from "react";
-import { createUser, depositAmount, loginUser, withdrawAmount } from "./api";
+import { createUser, depositAmount, loginUser, transferAmount, withdrawAmount } from "./api";
 import { setStorageItem } from "@/utils/setStorageItem";
 import { useAlert } from "@/hooks/useAlert";
 import { useRouter } from "next/router";
@@ -154,9 +154,42 @@ const useWithdraw = () => {
   return { createWithdawMutation, error, loading };
 }
 
+const useTransferAmount = () => {
+  const [error, setError] = useState<string | null>(null);
+  const [loading, setLoading] = useState<boolean>(false);
+  const queryClient = useQueryClient();
+  const { showAlert } = useAlert();
+
+  const createTransferMutation = useMutation({
+    mutationFn: ({ amount, toAccountNumber, id }: { amount: number; toAccountNumber: string; id: string }) => transferAmount(amount, toAccountNumber, id),
+    onMutate: () => {
+      setLoading(true);
+      setError(null);
+    },
+    onSuccess: () => {
+      setLoading(false);
+      console.log("Transfer created successfully");
+      showAlert("Transferência realizada com sucesso!", "success");
+      queryClient.invalidateQueries({ queryKey: ['user'] });
+    },
+    onError: (error: Error) => {
+      setError(error.message);
+      setLoading(false);
+      console.log("Error creating transfer", error);
+      showAlert("Erro ao realizar transferência", "error");
+    },
+    onSettled: () => {
+      setLoading(false);
+    },
+  });
+
+  return { createTransferMutation, error, loading };
+}
+
 export { 
   useCreateUser, 
   useLoginUser, 
   useDeposit, 
-  useWithdraw 
+  useWithdraw,
+  useTransferAmount,
 };
