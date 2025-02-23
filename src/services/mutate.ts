@@ -21,7 +21,6 @@ const useCreateUser = () => {
     },
     onSuccess: () => {
       setLoading(false);
-      console.log("User created successfully");
       showAlert("Usuário criado com sucesso!", "success");
     },
     onError: (error: Error) => {
@@ -104,7 +103,6 @@ const useDeposit = () => {
     },
     onSuccess: () => {
       setLoading(false);
-      console.log("Deposit created successfully");
       showAlert("Depósito realizado com sucesso!", "success");  
       queryClient.invalidateQueries({ queryKey: ['user'] });
     },
@@ -136,7 +134,6 @@ const useWithdraw = () => {
     },
     onSuccess: () => {
       setLoading(false);
-      console.log("Withdraw created successfully");
       showAlert("Saque realizado com sucesso!", "success");
       queryClient.invalidateQueries({ queryKey: ['user'] });
     },
@@ -168,7 +165,6 @@ const useTransferAmount = () => {
     },
     onSuccess: () => {
       setLoading(false);
-      console.log("Transfer created successfully");
       showAlert("Transferência realizada com sucesso!", "success");
       queryClient.invalidateQueries({ queryKey: ['user'] });
     },
