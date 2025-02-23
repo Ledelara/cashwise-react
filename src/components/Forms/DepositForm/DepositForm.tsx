@@ -16,17 +16,9 @@ interface DepositFormProps {
 
 type FormData = z.infer<typeof depositSchema>;
 
-export default function DepositForm({
-  isOpen,
-  onClose,
-  modalTitle,
-}: DepositFormProps) {
-  const {
-    handleSubmit,
-    formState: { errors },
-    reset,
-    control,
-  } = useForm<FormData>({
+export default function DepositForm({ isOpen, onClose, modalTitle }: DepositFormProps) {
+
+  const { handleSubmit, formState: { errors }, reset, control } = useForm<FormData>({
     resolver: zodResolver(depositSchema),
     defaultValues: { amount: 0 },
   });
