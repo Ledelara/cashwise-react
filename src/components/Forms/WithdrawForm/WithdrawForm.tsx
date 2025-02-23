@@ -4,7 +4,7 @@ import { Box, Modal, TextField } from "@mui/material";
 import { useEffect } from "react";
 import { Controller, useForm } from "react-hook-form";
 import Form from "../Form";
-import { amountSchema } from "@/schemas/depositSchema";
+import { amountSchema } from "@/schemas/amountSchema";
 import { z } from "zod";
 import { NumericFormat } from "react-number-format";
 

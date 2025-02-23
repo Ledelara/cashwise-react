@@ -1,4 +1,4 @@
-import { amountSchema } from "@/schemas/depositSchema";
+import { amountSchema } from "@/schemas/amountSchema";
 import { useDeposit } from "@/services/mutate";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Box, Modal, TextField } from "@mui/material";
