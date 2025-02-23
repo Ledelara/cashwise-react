@@ -1,4 +1,4 @@
-import { depositSchema } from "@/schemas/depositSchema";
+import { amountSchema } from "@/schemas/depositSchema";
 import { useDeposit } from "@/services/mutate";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Box, Modal, TextField } from "@mui/material";
@@ -14,18 +14,17 @@ interface DepositFormProps {
   modalTitle: string;
 }
 
-type FormData = z.infer<typeof depositSchema>;
+type FormData = z.infer<typeof amountSchema>;
 
 export default function DepositForm({ isOpen, onClose, modalTitle }: DepositFormProps) {
 
   const { handleSubmit, formState: { errors }, reset, control } = useForm<FormData>({
-    resolver: zodResolver(depositSchema),
+    resolver: zodResolver(amountSchema),
     defaultValues: { amount: 0 },
   });
 
   const { createDepositMutation, loading } = useDeposit();
-  const getUserId =
-    typeof window !== "undefined" ? localStorage.getItem("userId") : null;
+  const getUserId = typeof window !== "undefined" ? localStorage.getItem("userId") : null;
 
   const onSubmit = async (data: FormData) => {
     createDepositMutation.mutate({ amount: data.amount, id: getUserId ?? "" });

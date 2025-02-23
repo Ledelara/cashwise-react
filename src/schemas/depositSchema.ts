@@ -1,6 +1,6 @@
 import { z } from "zod";
 
-export const depositSchema = z.object({
+export const amountSchema = z.object({
     amount: z
         .string()
         .min(1, "O valor é obrigatório")
@@ -14,4 +14,4 @@ export const depositSchema = z.object({
         }),
 });
 
-export type Deposit = z.infer<typeof depositSchema>;
+export type Deposit = z.infer<typeof amountSchema>;
