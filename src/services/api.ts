@@ -25,6 +25,11 @@ export const getUser = async (userId: string): Promise<IUser> => {
     return res.data;
 }
 
+export const getTransactions = async (userId: string) => {
+    const res = await api.get(`/user/statement/${userId}`);
+    return res.data;
+}
+
 export const depositAmount = async (amount: number, id: string) => {
     const res = await api.post(`/user/${id}/deposit`, { amount });
     return res.data;
