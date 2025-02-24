@@ -105,6 +105,7 @@ const useDeposit = () => {
       setLoading(false);
       showAlert("Depósito realizado com sucesso!", "success");  
       queryClient.invalidateQueries({ queryKey: ['user'] });
+      queryClient.invalidateQueries({ queryKey: ['transactions'] });
     },
     onError: (error: Error) => {
       setError(error.message);
@@ -136,6 +137,7 @@ const useWithdraw = () => {
       setLoading(false);
       showAlert("Saque realizado com sucesso!", "success");
       queryClient.invalidateQueries({ queryKey: ['user'] });
+      queryClient.invalidateQueries({ queryKey: ['transactions'] });
     },
     onError: (error: Error) => {
       setError(error.message);
@@ -167,6 +169,7 @@ const useTransferAmount = () => {
       setLoading(false);
       showAlert("Transferência realizada com sucesso!", "success");
       queryClient.invalidateQueries({ queryKey: ['user'] });
+      queryClient.invalidateQueries({ queryKey: ['transactions'] });
     },
     onError: (error: Error) => {
       setError(error.message);

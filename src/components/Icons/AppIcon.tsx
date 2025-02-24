@@ -6,6 +6,7 @@ import {
     Payments, 
     AttachMoney, 
     CreditCard,
+    ReceiptLong,
 } from "@mui/icons-material";
 
 const ICONS = [
@@ -32,6 +33,10 @@ const ICONS = [
     {
         title: "CreditCard",
         icon: <CreditCard />,
+    },
+    {
+        title: "Transactions",
+        icon: <ReceiptLong />,
     },
 ]
 

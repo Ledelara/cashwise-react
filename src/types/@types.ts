@@ -33,3 +33,10 @@ export interface IUser {
         },
     ],
 };
+
+export interface ITransaction {
+    userId: string;
+    type: string;
+    amount: number;
+    toAccount?: string;
+}
