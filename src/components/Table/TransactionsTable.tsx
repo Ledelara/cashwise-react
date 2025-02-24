@@ -10,10 +10,10 @@ import {
   Paper,
   Typography,
   TableFooter,
-  Pagination,
   Modal,
 } from "@mui/material";
 import { useState } from "react";
+import PaginationComponent from "../Pagination/Pagination";
 
 type TransactionsTableProps = {
   transactions: ITransaction[];
@@ -86,11 +86,11 @@ export default function TransactionsTable({ transactions, isOpen, onClose }: Tra
           <TableFooter>
             <TableRow>
               <TableCell colSpan={3} align="center">
-                <Pagination
+                <PaginationComponent
                   count={Math.ceil((transactions?.length ?? 0) / rowsPerPage)}
                   page={page}
                   onChange={handleChangePage}
-                  sx={{ margin: "auto" }}
+                  style={{ margin: "auto" }}
                 />
               </TableCell>
             </TableRow>
