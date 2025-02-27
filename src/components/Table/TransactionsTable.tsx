@@ -78,7 +78,7 @@ export default function TransactionsTable({
                       ? "Depósito"
                       : "Saque"}
                   </TableCell>
-                  <TableCell sx={{ textAlign: "center" }}>{transaction.toAccount ? transaction.toAccount : 'Sem transação entre contas.'}</TableCell>
+                  <TableCell sx={{ textAlign: "center" }}>{transaction.toAccount ? transaction.toAccount : 'N/A'}</TableCell>
                   <TableCell sx={{ textAlign: "center" }}>
                     {new Intl.NumberFormat("pt-BR", {
                       style: "currency",
