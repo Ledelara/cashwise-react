@@ -39,4 +39,5 @@ export interface ITransaction {
     type: string;
     amount: number;
     toAccount?: string;
+    timestamp: string;
 }

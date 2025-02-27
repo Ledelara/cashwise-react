@@ -21,7 +21,11 @@ type TransactionsTableProps = {
   onClose: () => void;
 };
 
-export default function TransactionsTable({ transactions, isOpen, onClose }: TransactionsTableProps) {
+export default function TransactionsTable({
+  transactions,
+  isOpen,
+  onClose,
+}: TransactionsTableProps) {
   const [page, setPage] = useState(0);
   const rowsPerPage = 5;
 
@@ -33,7 +37,7 @@ export default function TransactionsTable({ transactions, isOpen, onClose }: Tra
     <Modal open={isOpen} onClose={onClose}>
       <TableContainer
         component={Paper}
-        sx={{ 
+        sx={{
           position: "absolute",
           top: "50%",
           left: "50%",
@@ -47,7 +51,7 @@ export default function TransactionsTable({ transactions, isOpen, onClose }: Tra
           alignItems: "center",
           justifyContent: "center",
           padding: "10px",
-          background: "#2a5298" 
+          background: "#2a5298",
         }}
       >
         <Typography variant="h6" sx={{ textAlign: "center", mt: 2 }}>
@@ -56,9 +60,10 @@ export default function TransactionsTable({ transactions, isOpen, onClose }: Tra
         <Table>
           <TableHead>
             <TableRow>
-              <TableCell>Tipo</TableCell>
-              <TableCell>Conta Destino</TableCell>
-              <TableCell>Valor</TableCell>
+              <TableCell sx={{ textAlign: "center" }}>Tipo</TableCell>
+              <TableCell sx={{ textAlign: "center" }}>Conta Destino</TableCell>
+              <TableCell sx={{ textAlign: "center" }}>Valor</TableCell>
+              <TableCell sx={{ textAlign: "center" }}>Data</TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
@@ -66,19 +71,29 @@ export default function TransactionsTable({ transactions, isOpen, onClose }: Tra
               .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
               .map((transaction, index) => (
                 <TableRow key={index}>
-                  <TableCell>
+                  <TableCell sx={{ textAlign: "center" }}>
                     {transaction.type === "transfer"
                       ? "Transferência"
                       : transaction.type === "deposit"
                       ? "Depósito"
                       : "Saque"}
                   </TableCell>
-                  <TableCell>{transaction.toAccount}</TableCell>
-                  <TableCell>
+                  <TableCell sx={{ textAlign: "center" }}>{transaction.toAccount ? transaction.toAccount : 'Sem transação entre contas.'}</TableCell>
+                  <TableCell sx={{ textAlign: "center" }}>
                     {new Intl.NumberFormat("pt-BR", {
                       style: "currency",
                       currency: "BRL",
                     }).format(transaction.amount)}
+                  </TableCell>
+                  <TableCell sx={{ textAlign: "center" }}>
+                    {new Intl.DateTimeFormat("pt-BR", {
+                      year: "numeric",
+                      month: "2-digit",
+                      day: "2-digit",
+                      hour: "2-digit",
+                      minute: "2-digit",
+                      second: "2-digit",
+                    }).format(new Date(transaction.timestamp))}
                   </TableCell>
                 </TableRow>
               ))}
