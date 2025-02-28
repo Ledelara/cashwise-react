@@ -19,6 +19,8 @@ export default function ActionButton({ label, icon, onClick, disabled }: ActionB
                 backgroundColor: "rgba(255, 255, 255, 0.2)",
                 color: "#fff",
                 boxShadow: "0px 2px 4px rgba(0, 0, 0, 0.25)",
+                minWidth: "100px",
+                borderRadius: "10px",
               }}
         >
             {icon}

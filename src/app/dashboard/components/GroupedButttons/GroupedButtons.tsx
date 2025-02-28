@@ -11,7 +11,7 @@ export default function GroupedButtons() {
                 display: 'flex',
                 flexDirection: 'row',
                 justifyContent: 'space-between',
-                padding: '10px',
+                paddingTop: '10px',
                 gap: '10px',
             }}
         >

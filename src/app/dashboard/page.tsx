@@ -7,7 +7,6 @@ import ErrorMessage from "@/components/Message/ErrorMessage/ErrorMessage";
 import ContainerCard from "@/app/dashboard/components/ContainerCard/ContainerCard";
 import UserInfo from "./components/UserInfo/UserInfo";
 import BalanceCard from "./components/BalanceCard/BalanceCard";
-import GroupedButtons from "./components/GroupedButttons/GroupedButtons";
 import { useMemo } from "react";
 
 export default function Dashboard() {
@@ -52,7 +51,6 @@ export default function Dashboard() {
 
         )}
       </Container>
-      <GroupedButtons />
     </Box>
   );
 }

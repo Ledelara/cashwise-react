@@ -1,5 +1,6 @@
 import { Card, Grid } from "@mui/material";
 import { ReactNode } from "react";
+import GroupedButtons from "../GroupedButttons/GroupedButtons";
 
 type ContainerCardProps = {
   userInfo: ReactNode;
@@ -33,6 +34,7 @@ export default function ContainerCard({ userInfo, icon, balance }: ContainerCard
           {balance}
         </Grid>
       </Grid>
+      <GroupedButtons />
     </Card>
   );
 }
