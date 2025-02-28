@@ -8,11 +8,14 @@ import ContainerCard from "@/app/dashboard/components/ContainerCard/ContainerCar
 import UserInfo from "./components/UserInfo/UserInfo";
 import BalanceCard from "./components/BalanceCard/BalanceCard";
 import GroupedButtons from "./components/GroupedButttons/GroupedButtons";
+import { useMemo } from "react";
 
 export default function Dashboard() {
 
   const userId = typeof window !== "undefined" ? localStorage.getItem("userId") : null;
-  const { data: user, isLoading, isError } = useUserQuery(userId);
+  const { data, isLoading, isError } = useUserQuery(userId);
+
+  const user = useMemo(() => data, [data]);
 
   return (
     <Box
