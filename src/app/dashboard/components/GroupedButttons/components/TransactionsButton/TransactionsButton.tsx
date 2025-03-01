@@ -1,5 +1,5 @@
 import { useMemo, useState } from "react"
-import ActionButton from "../Button/ActionnButton"
+import ActionButton from "../Button/ActionButton"
 import AppIcon from "@/components/Icons/AppIcon"
 import TransactionsTable from "@/components/Table/TransactionsTable"
 import { useTransactionsQuery } from "@/services/queries"
