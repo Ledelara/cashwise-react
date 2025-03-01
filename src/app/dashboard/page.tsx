@@ -8,6 +8,8 @@ import ContainerCard from "@/app/dashboard/components/ContainerCard/ContainerCar
 import UserInfo from "./components/UserInfo/UserInfo";
 import BalanceCard from "./components/BalanceCard/BalanceCard";
 import { useMemo } from "react";
+import { AlertProvider } from "@/contexts/AlertContext/AlertContext";
+import { AlertComponent } from "@/components/Alert/AlertComponent";
 
 export default function Dashboard() {
 
@@ -28,29 +30,32 @@ export default function Dashboard() {
         gap: 2,
       }}
     >
-      <Container 
-        maxWidth="sm"
-        sx={{
-          display: "flex",
-          flexDirection: "column",
-          alignItems: "center",
-          justifyContent: "center",
-          gap: 2,
-        }}
-      >
-        <LoadingComponent isLoading={isLoading} />
+      <AlertProvider>
+        <Container 
+          maxWidth="sm"
+          sx={{
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+            justifyContent: "center",
+            gap: 2,
+          }}
+        >
+          <LoadingComponent isLoading={isLoading} />
 
-        {isError && <ErrorMessage message="Erro ao carregar usuário." />}
+          {isError && <ErrorMessage message="Erro ao carregar usuário." />}
 
-        {user && (
-          <ContainerCard
-            userInfo={<UserInfo name={user.name} accountNumber={String(user.accountNumber)} />}
-            icon={<AccountBalanceIcon sx={{ fontSize: 40, opacity: 0.7 }} />}
-            balance={<BalanceCard balance={Number(user.balance)} />}
-          />
+          {user && (
+            <ContainerCard
+              userInfo={<UserInfo name={user.name} accountNumber={String(user.accountNumber)} />}
+              icon={<AccountBalanceIcon sx={{ fontSize: 40, opacity: 0.7 }} />}
+              balance={<BalanceCard balance={Number(user.balance)} />}
+            />
 
-        )}
-      </Container>
+          )}
+        </Container>
+        <AlertComponent />  
+      </AlertProvider>
     </Box>
   );
 }
