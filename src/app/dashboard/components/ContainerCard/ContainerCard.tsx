@@ -6,9 +6,10 @@ type ContainerCardProps = {
   userInfo: ReactNode;
   icon: ReactNode;
   balance: ReactNode;
+  isLoading: boolean;
 };
 
-export default function ContainerCard({ userInfo, icon, balance }: ContainerCardProps) {
+export default function ContainerCard({ userInfo, icon, balance, isLoading }: ContainerCardProps) {
   return (
     <Card
       sx={{
@@ -34,7 +35,9 @@ export default function ContainerCard({ userInfo, icon, balance }: ContainerCard
           {balance}
         </Grid>
       </Grid>
-      <GroupedButtons />
+      <GroupedButtons 
+        isLoading={isLoading}
+      />
     </Card>
   );
 }

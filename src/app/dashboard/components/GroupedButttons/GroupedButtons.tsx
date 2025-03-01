@@ -1,10 +1,14 @@
-import { Box } from "@mui/material";
+import { Box, Skeleton } from "@mui/material";
 import DepositButton from "./components/DepositButton/DepositButton";
 import WithdrawButton from "./components/WithdrawButton/WithdrawButton";
 import TransferButton from "./components/TransferButton/TransferButton";
 import TransactionsButton from "./components/TransactionsButton/TransactionsButton";
 
-export default function GroupedButtons() {
+interface GroupedButtonsProps {
+    isLoading: boolean;
+}
+
+export default function GroupedButtons({ isLoading }: GroupedButtonsProps) {
     return (
         <Box
             sx={{
@@ -15,10 +19,16 @@ export default function GroupedButtons() {
                 gap: '10px',
             }}
         >
-            <DepositButton />
-            <WithdrawButton />
-            <TransferButton />
-            <TransactionsButton />
+            {isLoading ? (
+                <Skeleton variant="rectangular" width={120} height={40} />
+            ) : (
+                <>
+                    <DepositButton />
+                    <WithdrawButton />
+                    <TransferButton />
+                    <TransactionsButton />
+                </>
+            )}
         </Box>
     )
 }
