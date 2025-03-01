@@ -3,6 +3,7 @@ import DepositButton from "./components/DepositButton/DepositButton";
 import WithdrawButton from "./components/WithdrawButton/WithdrawButton";
 import TransferButton from "./components/TransferButton/TransferButton";
 import TransactionsButton from "./components/TransactionsButton/TransactionsButton";
+import '@/styles/components/_groupped-buttons.scss';
 
 interface GroupedButtonsProps {
     isLoading: boolean;
@@ -10,15 +11,7 @@ interface GroupedButtonsProps {
 
 export default function GroupedButtons({ isLoading }: GroupedButtonsProps) {
     return (
-        <Box
-            sx={{
-                display: 'flex',
-                flexDirection: 'row',
-                justifyContent: 'space-between',
-                paddingTop: '10px',
-                gap: '10px',
-            }}
-        >
+        <Box className="grouppedButtons-box">
             {isLoading ? (
                 <Skeleton variant="rectangular" width={120} height={40} />
             ) : (

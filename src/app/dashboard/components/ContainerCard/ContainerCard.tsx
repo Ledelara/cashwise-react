@@ -23,7 +23,6 @@ export default function ContainerCard({ userInfo, icon, balance, isLoading }: Co
       }}
     >
       <Grid container spacing={3} alignItems="center">
-        {/* Cabeçalho: UserInfo + Ícone alinhado à direita */}
         <Grid item xs={8}>
           {userInfo}
         </Grid>

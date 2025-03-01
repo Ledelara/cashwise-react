@@ -1,4 +1,5 @@
 import { Typography } from "@mui/material";
+import "@/styles/components/_error-message.scss";
 
 type ErrorMessageProps = {
   message: string;
@@ -6,7 +7,7 @@ type ErrorMessageProps = {
 
 export default function ErrorMessage({ message }: ErrorMessageProps) {
   return (
-    <Typography variant="h6" color="error" textAlign="center">
+    <Typography className="error-message">
       {message}
     </Typography>
   );

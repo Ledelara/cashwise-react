@@ -61,18 +61,6 @@ export default function DepositForm({ isOpen, onClose, modalTitle }: DepositForm
       >
         <Form
           onSubmit={handleSubmit(onSubmit)}
-          style={{
-            background: "#2a5298",
-            padding: "20px",
-            borderRadius: "10px",
-            boxShadow: "0 0 10px rgba(0, 0, 0, 0.1)",
-            display: "flex",
-            flexDirection: "column",
-            justifyContent: "center",
-            alignItems: "center",
-            gap: "10px",
-            width: "300px",
-          }}
           buttonLabel={loading ? "Carregando..." : "Depositar"}
           loading={loading}
         >

@@ -1,4 +1,5 @@
 import { Card, Typography } from "@mui/material";
+import '@/styles/components/_balance-card.scss';
 
 type BalanceCardProps = {
   balance: number;
@@ -13,12 +14,8 @@ export default function BalanceCard({ balance }: BalanceCardProps) {
 
   return (
     <Card
-      sx={{
-        p: 2,
-        background: "rgba(255, 255, 255, 0.2)",
-        borderRadius: 2,
-        textAlign: "center",
-      }}
+      className="balance-card"
+      variant="outlined"
     >
       <Typography variant="h6" fontWeight="bold">
         Saldo Disponível

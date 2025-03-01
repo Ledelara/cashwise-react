@@ -1,0 +1,16 @@
+.grouppedButtons-box {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  padding-top: 10px;
+  gap: 10px;
+
+  @media (max-width: 768px) {
+    justify-content: center;
+  }
+}
+
+.grouppedButtons-box > * {
+  flex: 0 0 48%;
+  margin-bottom: 10px;
+}

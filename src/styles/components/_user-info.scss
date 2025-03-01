@@ -1,0 +1,16 @@
+.container-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.container-box {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 10px 0;
+}
+
+.user-app-icon {
+  font-size: 2rem;
+  opacity: 0.7;
+}

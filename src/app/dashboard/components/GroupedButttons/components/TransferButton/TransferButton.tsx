@@ -1,5 +1,5 @@
 import { useState } from "react";
-import ActionButton from "../Button/ActionnButton";
+import ActionButton from "../Button/ActionButton";
 import AppIcon from "@/components/Icons/AppIcon";
 import TransferForm from "@/components/Forms/TransferForm/TransferForm";
 

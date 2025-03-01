@@ -4,6 +4,7 @@ import PublicRoute from "@/components/PublicRoute";
 import { AlertProvider } from "@/contexts/AlertContext/AlertContext";
 import { Container } from "@mui/material";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import '@/styles/_globals.scss';
 
 export default function RegisterPage() {
     const queryClient = new QueryClient();
@@ -11,17 +12,7 @@ export default function RegisterPage() {
         <QueryClientProvider client={queryClient}>
             <AlertProvider>
                 <PublicRoute>
-                    <Container
-                        sx={{
-                            display: 'flex',
-                            flexDirection: 'column',
-                            justifyContent: 'center',
-                            alignItems: 'center',
-                            height: '100vh',
-                            width: '100%',
-                            background: "linear-gradient(135deg, #1e3c72 0%, #2a5298 100%)",
-                        }}
-                    >
+                    <Container className="login-register-container">
                         <RegisterForm />
                     </Container>
                 </PublicRoute>

@@ -42,7 +42,8 @@ export default function TransactionsTable({
           top: "50%",
           left: "50%",
           transform: "translate(-50%, -50%)",
-          width: 650,
+          width: { xs: "90%", sm: 650 },
+          maxWidth: 650,
           bgcolor: "background.paper",
           borderRadius: "5px",
           boxShadow: 24,
@@ -52,18 +53,19 @@ export default function TransactionsTable({
           justifyContent: "center",
           padding: "10px",
           background: "#2a5298",
+          margin: "0 auto",
         }}
       >
         <Typography variant="h6" sx={{ textAlign: "center", mt: 2 }}>
           Histórico de Transações
         </Typography>
-        <Table>
+        <Table sx={{ width: "100%" }}>
           <TableHead>
             <TableRow>
-              <TableCell sx={{ textAlign: "center" }}>Tipo</TableCell>
-              <TableCell sx={{ textAlign: "center" }}>Conta Destino</TableCell>
-              <TableCell sx={{ textAlign: "center" }}>Valor</TableCell>
-              <TableCell sx={{ textAlign: "center" }}>Data</TableCell>
+              <TableCell sx={{ textAlign: "center", padding: { xs: "8px", sm: "16px" } }}>Tipo</TableCell>
+              <TableCell sx={{ textAlign: "center", padding: { xs: "8px", sm: "16px" } }}>Conta Destino</TableCell>
+              <TableCell sx={{ textAlign: "center", padding: { xs: "8px", sm: "16px" } }}>Valor</TableCell>
+              <TableCell sx={{ textAlign: "center", padding: { xs: "8px", sm: "16px" } }}>Data</TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
@@ -71,21 +73,23 @@ export default function TransactionsTable({
               .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
               .map((transaction, index) => (
                 <TableRow key={index}>
-                  <TableCell sx={{ textAlign: "center" }}>
+                  <TableCell sx={{ textAlign: "center", padding: { xs: "8px", sm: "16px" } }}>
                     {transaction.type === "transfer"
                       ? "Transferência"
                       : transaction.type === "deposit"
                       ? "Depósito"
                       : "Saque"}
                   </TableCell>
-                  <TableCell sx={{ textAlign: "center" }}>{transaction.toAccount ? transaction.toAccount : 'N/A'}</TableCell>
-                  <TableCell sx={{ textAlign: "center" }}>
+                  <TableCell sx={{ textAlign: "center", padding: { xs: "8px", sm: "16px" } }}>
+                    {transaction.toAccount ? transaction.toAccount : 'N/A'}
+                  </TableCell>
+                  <TableCell sx={{ textAlign: "center", padding: { xs: "8px", sm: "16px" } }}>
                     {new Intl.NumberFormat("pt-BR", {
                       style: "currency",
                       currency: "BRL",
                     }).format(transaction.amount)}
                   </TableCell>
-                  <TableCell sx={{ textAlign: "center" }}>
+                  <TableCell sx={{ textAlign: "center", padding: { xs: "8px", sm: "16px" } }}>
                     {new Intl.DateTimeFormat("pt-BR", {
                       year: "numeric",
                       month: "2-digit",

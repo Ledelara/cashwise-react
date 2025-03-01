@@ -9,6 +9,7 @@ import BalanceCard from "./components/BalanceCard/BalanceCard";
 import { useMemo } from "react";
 import { AlertProvider } from "@/contexts/AlertContext/AlertContext";
 import { AlertComponent } from "@/components/Alert/AlertComponent";
+import '@/styles/pages/_dashboard.scss';
 
 export default function Dashboard() {
 
@@ -18,27 +19,11 @@ export default function Dashboard() {
   const user = useMemo(() => data, [data]);
 
   return (
-    <Box
-      sx={{
-        height: "100vh",
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "center",
-        flexDirection: "column",
-        background: "linear-gradient(135deg, #1e3c72 0%, #2a5298 100%)",
-        gap: 2,
-      }}
-    >
+    <Box className="dashboard-container"> 
       <AlertProvider>
         <Container 
           maxWidth="sm"
-          sx={{
-            display: "flex",
-            flexDirection: "column",
-            alignItems: "center",
-            justifyContent: "center",
-            gap: 2,
-          }}
+          className="dashboard-content"
         >
           {isError && <ErrorMessage message="Erro ao carregar usuário." />}
 
