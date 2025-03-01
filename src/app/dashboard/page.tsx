@@ -40,8 +40,6 @@ export default function Dashboard() {
             gap: 2,
           }}
         >
-          {/* <LoadingComponent isLoading={isLoading} /> */}
-
           {isError && <ErrorMessage message="Erro ao carregar usuário." />}
 
           {!isError && (
