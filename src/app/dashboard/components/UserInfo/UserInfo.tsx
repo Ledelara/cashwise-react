@@ -4,6 +4,7 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { removeStorageItem } from "@/utils/removeStorageItem";
 import ModalComponent from "@/components/Modal/ModalComponent";
+import '@/styles/components/_user-info.scss';
 
 type UserInfoProps = {
   name: string;
@@ -26,12 +27,12 @@ export default function UserInfo({ name, accountNumber }: UserInfoProps) {
   };
 
   return (
-    <Box display="flex" flexDirection="column">
+    <Box className="container-info">
       <Typography variant="h5" fontWeight="bold">
         Olá, {name}!
       </Typography>
-      <Box display="flex" alignItems="center" gap={1} mt={1}>
-        <AppIcon iconTitle="CreditCard" sx={{ fontSize: 40, opacity: 0.7 }} />
+      <Box className="container-box">
+        <AppIcon iconTitle="CreditCard" className="user-app-icon" />
         <Typography variant="body1" fontSize="16px">
           Conta: {accountNumber}
         </Typography>
