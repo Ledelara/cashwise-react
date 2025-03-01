@@ -1,7 +1,6 @@
 'use client'
 import { useUserQuery } from "@/services/queries";
-import { Box, Container } from "@mui/material";
-import LoadingComponent from "@/components/Loading/Loading";
+import { Box, Container, Skeleton } from "@mui/material";
 import AccountBalanceIcon from "@mui/icons-material/AccountBalance";
 import ErrorMessage from "@/components/Message/ErrorMessage/ErrorMessage";
 import ContainerCard from "@/app/dashboard/components/ContainerCard/ContainerCard";
@@ -41,17 +40,27 @@ export default function Dashboard() {
             gap: 2,
           }}
         >
-          <LoadingComponent isLoading={isLoading} />
-
           {isError && <ErrorMessage message="Erro ao carregar usuário." />}
 
-          {user && (
+          {!isError && (
             <ContainerCard
-              userInfo={<UserInfo name={user.name} accountNumber={String(user.accountNumber)} />}
+              userInfo={
+                isLoading ? (
+                  <Skeleton variant="text" width={180} height={24} />
+                ) : (
+                  <UserInfo name={String(user?.name)} accountNumber={String(user?.accountNumber)} />
+                )
+              }
               icon={<AccountBalanceIcon sx={{ fontSize: 40, opacity: 0.7 }} />}
-              balance={<BalanceCard balance={Number(user.balance)} />}
+              balance={
+                isLoading ? (
+                  <Skeleton variant="rectangular" width={120} height={40} />
+                ) : (
+                  <BalanceCard balance={Number(user?.balance)} />
+                )
+              }
+              isLoading={isLoading}
             />
-
           )}
         </Container>
         <AlertComponent />  
