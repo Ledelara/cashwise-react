@@ -48,13 +48,12 @@ export default function WithdrawForm({ isOpen, onClose, modalTitle }: WithdrawFo
           transform: "translate(-50%, -50%)",
           width: 300,
           bgcolor: "background.paper",
-          borderRadius: "5px",
+          borderRadius: "10px",
           boxShadow: 24,
           display: "flex",
           flexDirection: "column",
           alignItems: "center",
           justifyContent: "center",
-          padding: "10px",
           background: "#2a5298",
         }}
       >
