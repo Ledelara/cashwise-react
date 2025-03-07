@@ -28,7 +28,10 @@ export default function DepositForm({
     control,
   } = useForm<FormData>({
     resolver: zodResolver(amountSchema),
-    defaultValues: { amount: 0 },
+    defaultValues: { 
+      amount: 0,
+      transactionPassword: "",
+    },
   });
 
   const { createDepositMutation, loading } = useDeposit(onClose);
@@ -45,7 +48,7 @@ export default function DepositForm({
 
   useEffect(() => {
     if (!isOpen) {
-      reset({ amount: 0 });
+      reset({ amount: 0, transactionPassword: "" });
     }
   }, [isOpen, reset]);
 

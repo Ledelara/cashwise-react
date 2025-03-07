@@ -23,6 +23,7 @@ export default function TransferForm({ isOpen, onClose, modalTitle }: TransferFo
     defaultValues: {
       amount: 0,
       toAccountNumber: "",
+      transactionPassword: "",
     },
   });
 
@@ -41,7 +42,7 @@ export default function TransferForm({ isOpen, onClose, modalTitle }: TransferFo
 
   useEffect(() => {
     if (!isOpen) {
-      reset();
+      reset({ amount: 0, toAccountNumber: "", transactionPassword: "" });
     }
   }, [isOpen, reset]);
 

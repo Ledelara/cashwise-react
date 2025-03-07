@@ -19,7 +19,10 @@ export default function WithdrawForm({ isOpen, onClose, modalTitle }: WithdrawFo
 
   const { handleSubmit, formState: { errors }, reset, control } = useForm<FormData>({
     resolver: zodResolver(amountSchema),
-    defaultValues: { amount: 0 },
+    defaultValues: { 
+      amount: 0,
+      transactionPassword: "",
+    },
   });
 
   const { createWithdawMutation, loading } = useWithdraw(onClose);
@@ -35,7 +38,7 @@ export default function WithdrawForm({ isOpen, onClose, modalTitle }: WithdrawFo
 
   useEffect(() => {
     if (!isOpen) {
-      reset();
+      reset({ amount: 0, transactionPassword: "" });
     }
   }, [isOpen, reset]);
 
