@@ -22,7 +22,7 @@ export default function WithdrawForm({ isOpen, onClose, modalTitle }: WithdrawFo
     defaultValues: { amount: 0 },
   });
 
-  const { createWithdawMutation, loading } = useWithdraw();
+  const { createWithdawMutation, loading } = useWithdraw(onClose);
   const getUserId = typeof window !== "undefined" ? localStorage.getItem("userId") : null;
 
   const onSubmit = async (data: FormData) => {
@@ -31,9 +31,6 @@ export default function WithdrawForm({ isOpen, onClose, modalTitle }: WithdrawFo
       id: getUserId ?? "", 
       transactionPassword: data.transactionPassword 
     });
-    if (createWithdawMutation.isSuccess) {
-      onClose();
-    }
   };
 
   useEffect(() => {

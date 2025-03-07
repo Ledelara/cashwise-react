@@ -89,7 +89,7 @@ const useLoginUser = () => {
   return { loginUserMutation, error, loading };
 };
 
-const useDeposit = () => {
+const useDeposit = (onClose: () => void) => {
   const [error, setError] = useState<string | null>(null);  
   const [loading, setLoading] = useState<boolean>(false);
   const queryClient = useQueryClient();
@@ -106,6 +106,7 @@ const useDeposit = () => {
       showAlert("Depósito realizado com sucesso!", "success");  
       queryClient.invalidateQueries({ queryKey: ['user'] });
       queryClient.invalidateQueries({ queryKey: ['transactions'] });
+      onClose();
     },
     onError: (error: Error) => {
       setError(error.message);
@@ -121,7 +122,7 @@ const useDeposit = () => {
   return { createDepositMutation, error, loading };
 }
 
-const useWithdraw = () => {
+const useWithdraw = (onClose: () => void) => {
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState<boolean>(false);
   const queryClient = useQueryClient();
@@ -138,6 +139,7 @@ const useWithdraw = () => {
       showAlert("Saque realizado com sucesso!", "success");
       queryClient.invalidateQueries({ queryKey: ['user'] });
       queryClient.invalidateQueries({ queryKey: ['transactions'] });
+      onClose();
     },
     onError: (error: Error) => {
       setError(error.message);
@@ -153,7 +155,7 @@ const useWithdraw = () => {
   return { createWithdawMutation, error, loading };
 }
 
-const useTransferAmount = () => {
+const useTransferAmount = (onClose: () => void) => {
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState<boolean>(false);
   const queryClient = useQueryClient();
@@ -170,6 +172,7 @@ const useTransferAmount = () => {
       showAlert("Transferência realizada com sucesso!", "success");
       queryClient.invalidateQueries({ queryKey: ['user'] });
       queryClient.invalidateQueries({ queryKey: ['transactions'] });
+      onClose();
     },
     onError: (error: Error) => {
       setError(error.message);

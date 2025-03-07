@@ -26,7 +26,7 @@ export default function TransferForm({ isOpen, onClose, modalTitle }: TransferFo
     },
   });
 
-  const { createTransferMutation, loading } = useTransferAmount();
+  const { createTransferMutation, loading } = useTransferAmount(onClose);
   const getUserId =
     typeof window !== "undefined" ? localStorage.getItem("userId") : null;
 
@@ -37,10 +37,6 @@ export default function TransferForm({ isOpen, onClose, modalTitle }: TransferFo
       id: getUserId ?? "",
       transactionPassword: data.transactionPassword,
     });
-
-    if (createTransferMutation.isSuccess) {
-      onClose();
-    }
   };
 
   useEffect(() => {

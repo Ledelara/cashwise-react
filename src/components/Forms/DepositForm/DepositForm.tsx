@@ -31,7 +31,7 @@ export default function DepositForm({
     defaultValues: { amount: 0 },
   });
 
-  const { createDepositMutation, loading } = useDeposit();
+  const { createDepositMutation, loading } = useDeposit(onClose);
   const getUserId =
     typeof window !== "undefined" ? localStorage.getItem("userId") : null;
 
@@ -41,9 +41,6 @@ export default function DepositForm({
       id: getUserId ?? "",
       transactionPassword: data.transactionPassword,
     });
-    if (createDepositMutation.isSuccess) {
-      onClose();
-    }
   };
 
   useEffect(() => {
