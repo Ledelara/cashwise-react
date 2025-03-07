@@ -12,6 +12,7 @@ export const amountSchema = z.object({
         .refine((val) => !isNaN(val) && val > 0, {
             message: "O valor deve ser um número positivo",
         }),
+    transactionPassword: z.string().min(1, "A senha de transação é obrigatória"),
 });
 
 export type Deposit = z.infer<typeof amountSchema>;

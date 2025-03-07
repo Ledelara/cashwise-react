@@ -30,18 +30,18 @@ export const getTransactions = async (userId: string) => {
     return res.data;
 }
 
-export const depositAmount = async (amount: number, id: string) => {
-    const res = await api.post(`/user/${id}/deposit`, { amount });
+export const depositAmount = async (amount: number, id: string, transactionPassword: string) => {
+    const res = await api.post(`/user/${id}/deposit`, { amount, transactionPassword });
     return res.data;
 }
 
-export const withdrawAmount = async (amount: number, id: string) => {
-    const res = await api.put(`/user/withdraw/${id}`, { amount });
+export const withdrawAmount = async (amount: number, id: string, transactionPassword: string) => {
+    const res = await api.put(`/user/withdraw/${id}`, { amount, transactionPassword });
     return res.data;
 }
 
-export const transferAmount = async (amount: number, toAccountNumber: string, id: string) => {
-    const res = await api.post(`/user/${id}/transfer`, { amount, toAccountNumber });
+export const transferAmount = async (amount: number, toAccountNumber: string, id: string, transactionPassword: string) => {
+    const res = await api.post(`/user/${id}/transfer`, { amount, toAccountNumber, transactionPassword });
     return res.data;
 }
 
