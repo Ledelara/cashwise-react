@@ -28,10 +28,13 @@ export default function DepositForm({
     control,
   } = useForm<FormData>({
     resolver: zodResolver(amountSchema),
-    defaultValues: { amount: 0 },
+    defaultValues: { 
+      amount: 0,
+      transactionPassword: "",
+    },
   });
 
-  const { createDepositMutation, loading } = useDeposit();
+  const { createDepositMutation, loading } = useDeposit(onClose);
   const getUserId =
     typeof window !== "undefined" ? localStorage.getItem("userId") : null;
 
@@ -41,14 +44,11 @@ export default function DepositForm({
       id: getUserId ?? "",
       transactionPassword: data.transactionPassword,
     });
-    if (createDepositMutation.isSuccess) {
-      onClose();
-    }
   };
 
   useEffect(() => {
     if (!isOpen) {
-      reset({ amount: 0 });
+      reset({ amount: 0, transactionPassword: "" });
     }
   }, [isOpen, reset]);
 

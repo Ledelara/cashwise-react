@@ -23,10 +23,11 @@ export default function TransferForm({ isOpen, onClose, modalTitle }: TransferFo
     defaultValues: {
       amount: 0,
       toAccountNumber: "",
+      transactionPassword: "",
     },
   });
 
-  const { createTransferMutation, loading } = useTransferAmount();
+  const { createTransferMutation, loading } = useTransferAmount(onClose);
   const getUserId =
     typeof window !== "undefined" ? localStorage.getItem("userId") : null;
 
@@ -37,15 +38,11 @@ export default function TransferForm({ isOpen, onClose, modalTitle }: TransferFo
       id: getUserId ?? "",
       transactionPassword: data.transactionPassword,
     });
-
-    if (createTransferMutation.isSuccess) {
-      onClose();
-    }
   };
 
   useEffect(() => {
     if (!isOpen) {
-      reset();
+      reset({ amount: 0, toAccountNumber: "", transactionPassword: "" });
     }
   }, [isOpen, reset]);
 
