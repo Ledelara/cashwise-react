@@ -26,7 +26,11 @@ export default function WithdrawForm({ isOpen, onClose, modalTitle }: WithdrawFo
   const getUserId = typeof window !== "undefined" ? localStorage.getItem("userId") : null;
 
   const onSubmit = async (data: FormData) => {
-    createWithdawMutation.mutate({ amount: data.amount, id: getUserId ?? "" });
+    createWithdawMutation.mutate({ 
+      amount: data.amount, 
+      id: getUserId ?? "", 
+      transactionPassword: data.transactionPassword 
+    });
     if (createWithdawMutation.isSuccess) {
       onClose();
     }
@@ -83,6 +87,24 @@ export default function WithdrawForm({ isOpen, onClose, modalTitle }: WithdrawFo
                 variant="outlined"
                 error={!!errors?.amount}
                 helperText={errors?.amount?.message}
+                style={{
+                  width: "100%",
+                  background: "#2a5298",
+                  color: "#fff",
+                }}
+              />
+            )}
+          />
+          <Controller 
+            name="transactionPassword"
+            control={control}
+            render={({ field }) => (
+              <TextField
+                {...field}
+                label="Senha de transação"
+                variant="outlined"
+                error={!!errors?.transactionPassword}
+                helperText={errors?.transactionPassword?.message}
                 style={{
                   width: "100%",
                   background: "#2a5298",

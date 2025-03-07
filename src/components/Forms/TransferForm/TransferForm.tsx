@@ -35,6 +35,7 @@ export default function TransferForm({ isOpen, onClose, modalTitle }: TransferFo
       amount: data.amount,
       toAccountNumber: data.toAccountNumber,
       id: getUserId ?? "",
+      transactionPassword: data.transactionPassword,
     });
 
     if (createTransferMutation.isSuccess) {
@@ -111,6 +112,24 @@ export default function TransferForm({ isOpen, onClose, modalTitle }: TransferFo
                 variant="outlined"
                 error={!!errors?.toAccountNumber}
                 helperText={errors?.toAccountNumber?.message}
+                style={{
+                  width: "100%",
+                  background: "#2a5298",
+                  color: "#fff",
+                }}
+              />
+            )}
+          />
+          <Controller 
+            name="transactionPassword"
+            control={control}
+            render={({ field }) => (
+              <TextField
+                {...field}
+                label="Senha de transação"
+                variant="outlined"
+                error={!!errors?.transactionPassword}
+                helperText={errors?.transactionPassword?.message}
                 style={{
                   width: "100%",
                   background: "#2a5298",

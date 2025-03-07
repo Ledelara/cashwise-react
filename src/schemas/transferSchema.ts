@@ -18,6 +18,9 @@ export const transferSchema = z.object({
   toAccountNumber: z
     .string({ required_error: "O número da conta é obrigatório" })
     .min(3, "O número da conta deve ter no mínimo 5 caracteres"),
+  transactionPassword: z
+    .string({ required_error: "A senha de transação é obrigatória" })
+    .min(4, "A senha de transação deve possuir 4 caracteres"),
 });
 
 export type Transfer = z.infer<typeof transferSchema>;

@@ -96,7 +96,7 @@ const useDeposit = () => {
   const { showAlert } = useAlert();
 
   const createDepositMutation = useMutation({
-    mutationFn: ({ amount, id }: { amount: number; id: string }) => depositAmount(amount, id),
+    mutationFn: ({ amount, id, transactionPassword }: { amount: number; id: string, transactionPassword: string }) => depositAmount(amount, id, transactionPassword),
     onMutate: () => {
       setLoading(true);
       setError(null);
@@ -128,7 +128,7 @@ const useWithdraw = () => {
   const { showAlert } = useAlert();
 
   const createWithdawMutation = useMutation({
-    mutationFn: ({ amount, id }: { amount: number; id: string}) => withdrawAmount(amount, id),
+    mutationFn: ({ amount, id, transactionPassword }: { amount: number; id: string, transactionPassword: string }) => withdrawAmount(amount, id, transactionPassword),
     onMutate: () => {
       setLoading(true);
       setError(null); 
@@ -160,7 +160,7 @@ const useTransferAmount = () => {
   const { showAlert } = useAlert();
 
   const createTransferMutation = useMutation({
-    mutationFn: ({ amount, toAccountNumber, id }: { amount: number; toAccountNumber: string; id: string }) => transferAmount(amount, toAccountNumber, id),
+    mutationFn: ({ amount, toAccountNumber, id, transactionPassword }: { amount: number; toAccountNumber: string; id: string, transactionPassword: string }) => transferAmount(amount, toAccountNumber, id, transactionPassword),
     onMutate: () => {
       setLoading(true);
       setError(null);

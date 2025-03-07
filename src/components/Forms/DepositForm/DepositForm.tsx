@@ -16,18 +16,31 @@ interface DepositFormProps {
 
 type FormData = z.infer<typeof amountSchema>;
 
-export default function DepositForm({ isOpen, onClose, modalTitle }: DepositFormProps) {
-
-  const { handleSubmit, formState: { errors }, reset, control } = useForm<FormData>({
+export default function DepositForm({
+  isOpen,
+  onClose,
+  modalTitle,
+}: DepositFormProps) {
+  const {
+    handleSubmit,
+    formState: { errors },
+    reset,
+    control,
+  } = useForm<FormData>({
     resolver: zodResolver(amountSchema),
     defaultValues: { amount: 0 },
   });
 
   const { createDepositMutation, loading } = useDeposit();
-  const getUserId = typeof window !== "undefined" ? localStorage.getItem("userId") : null;
+  const getUserId =
+    typeof window !== "undefined" ? localStorage.getItem("userId") : null;
 
   const onSubmit = async (data: FormData) => {
-    createDepositMutation.mutate({ amount: data.amount, id: getUserId ?? "" });
+    createDepositMutation.mutate({
+      amount: data.amount,
+      id: getUserId ?? "",
+      transactionPassword: data.transactionPassword,
+    });
     if (createDepositMutation.isSuccess) {
       onClose();
     }
@@ -84,6 +97,24 @@ export default function DepositForm({ isOpen, onClose, modalTitle }: DepositForm
                 variant="outlined"
                 error={!!errors?.amount}
                 helperText={errors?.amount?.message}
+                style={{
+                  width: "100%",
+                  background: "#2a5298",
+                  color: "#fff",
+                }}
+              />
+            )}
+          />
+          <Controller
+            name="transactionPassword"
+            control={control}
+            render={({ field }) => (
+              <TextField
+                {...field}
+                label="Senha de transação"
+                variant="outlined"
+                error={!!errors?.transactionPassword}
+                helperText={errors?.transactionPassword?.message}
                 style={{
                   width: "100%",
                   background: "#2a5298",
